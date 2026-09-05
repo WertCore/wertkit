@@ -7657,7 +7657,7 @@ function oy({
             children: e
           }
         ),
-        /* @__PURE__ */ D("div", { className: jt.body, children: [
+        /* @__PURE__ */ D("div", { className: jt.body, "data-has-sidebar": o ? "true" : void 0, children: [
           o && /* @__PURE__ */ d("nav", { className: jt.sidebar, "aria-label": "Primary", children: o }),
           /* @__PURE__ */ d("main", { id: i, className: jt.main, tabIndex: -1, children: s })
         ] })
