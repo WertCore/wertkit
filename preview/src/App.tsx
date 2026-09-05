@@ -121,11 +121,12 @@ function Kitchen() {
           <Field label="Endpoint" error="Must be an absolute URL.">
             <Input mono defaultValue="localhost:8123" />
           </Field>
-          <Field label="Region">
-            <Select placeholder="Pick a region" aria-label="Region">
-              <SelectItem value="eu-central-1">eu-central-1</SelectItem>
-              <SelectItem value="us-east-1">us-east-1</SelectItem>
-              <SelectItem value="ap-south-1">ap-south-1</SelectItem>
+          <Field label="Direction">
+            <Select placeholder="Pick a direction" aria-label="Direction">
+              <SelectItem value="north">North</SelectItem>
+              <SelectItem value="south">South</SelectItem>
+              <SelectItem value="east">East</SelectItem>
+              <SelectItem value="west">West</SelectItem>
             </Select>
           </Field>
         </div>
@@ -180,7 +181,7 @@ function Kitchen() {
             <TabsTrigger value="settings">Settings</TabsTrigger>
           </TabsList>
           <TabsContent value="runs">
-            <Table caption="Latest load-test runs" interactive>
+            <Table caption="Latest test runs" interactive>
               <Thead>
                 <Tr>
                   <Th>Run</Th><Th>Status</Th><Th numeric>VUs</Th><Th numeric>p95 (ms)</Th>
