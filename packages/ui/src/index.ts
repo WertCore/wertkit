@@ -56,6 +56,8 @@ export type { KbdProps } from './components/Kbd/Kbd';
 export { SplitPane } from './components/SplitPane/SplitPane';
 export type { SplitPaneProps } from './components/SplitPane/SplitPane';
 
+export { NavList, NavItem } from './components/NavList/NavList';
+export type { NavListProps, NavItemProps } from './components/NavList/NavList';
 export { Tree, TreeItem } from './components/Tree/Tree';
 export type { TreeProps, TreeItemProps } from './components/Tree/Tree';
 export {
