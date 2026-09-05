@@ -7481,46 +7481,47 @@ const Bg = "wk-Card_root", Vg = "wk-Card_outlined", Hg = "wk-Card_raised", Wg = 
 };
 function Yb({
   title: e,
-  description: t,
-  icon: n,
-  action: o,
-  footer: r,
-  children: s,
-  variant: i = "outlined",
-  padding: c = "md",
-  interactive: l = !1,
-  asChild: u = !1,
-  className: f,
-  ...p
+  titleLevel: t = 3,
+  description: n,
+  icon: o,
+  action: r,
+  footer: s,
+  children: i,
+  variant: c = "outlined",
+  padding: l = "md",
+  interactive: u = !1,
+  asChild: f = !1,
+  className: p,
+  ...m
 }) {
-  const m = Je(), g = e ? m : void 0, w = /* @__PURE__ */ D(We, { children: [
-    (e || o || n) && /* @__PURE__ */ D("div", { className: be.top, children: [
-      n && /* @__PURE__ */ d("span", { className: be.icon, "aria-hidden": "true", children: n }),
+  const g = Je(), w = e ? g : void 0, h = `h${t}`, v = /* @__PURE__ */ D(We, { children: [
+    (e || r || o) && /* @__PURE__ */ D("div", { className: be.top, children: [
+      o && /* @__PURE__ */ d("span", { className: be.icon, "aria-hidden": "true", children: o }),
       /* @__PURE__ */ D("div", { className: be.head, children: [
-        e && /* @__PURE__ */ d("h3", { className: be.title, id: g, children: e }),
-        t && /* @__PURE__ */ d("p", { className: be.description, children: t })
+        e && /* @__PURE__ */ d(h, { className: be.title, id: w, children: e }),
+        n && /* @__PURE__ */ d("p", { className: be.description, children: n })
       ] }),
-      o && /* @__PURE__ */ d("div", { className: be.action, children: o })
+      r && /* @__PURE__ */ d("div", { className: be.action, children: r })
     ] }),
-    s && /* @__PURE__ */ d("div", { className: be.body, children: s }),
-    r && /* @__PURE__ */ d("div", { className: be.footer, children: r })
-  ] }), h = $(
+    i && /* @__PURE__ */ d("div", { className: be.body, children: i }),
+    s && /* @__PURE__ */ d("div", { className: be.footer, children: s })
+  ] }), b = $(
     be.root,
-    be[i],
-    be[`padding-${c}`],
-    l && be.interactive,
-    f
+    be[c],
+    be[`padding-${l}`],
+    u && be.interactive,
+    p
   );
-  return u ? /* @__PURE__ */ d(Yo, { className: h, "aria-labelledby": g, ...p, children: /* @__PURE__ */ d("div", { children: w }) }) : l ? /* @__PURE__ */ d(
+  return f ? /* @__PURE__ */ d(Yo, { className: b, "aria-labelledby": w, ...m, children: /* @__PURE__ */ d("div", { children: v }) }) : u ? /* @__PURE__ */ d(
     "button",
     {
       type: "button",
-      className: h,
-      "aria-labelledby": g,
-      ...p,
-      children: w
+      className: b,
+      "aria-labelledby": w,
+      ...m,
+      children: v
     }
-  ) : /* @__PURE__ */ d("div", { className: h, "aria-labelledby": g, ...p, children: w });
+  ) : /* @__PURE__ */ d("div", { className: b, "aria-labelledby": w, ...m, children: v });
 }
 const Jg = "wk-Stepper_root", Qg = "wk-Stepper_horizontal", ew = "wk-Stepper_vertical", tw = "wk-Stepper_step", nw = "wk-Stepper_complete", ow = "wk-Stepper_current", rw = "wk-Stepper_marker", sw = "wk-Stepper_text", iw = "wk-Stepper_label", cw = "wk-Stepper_description", nt = {
   root: Jg,
