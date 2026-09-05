@@ -30,6 +30,18 @@ pub struct Theme {
     pub info_fg: &'static str,
     pub info_subtle: &'static str,
     pub overlay: &'static str,
+    pub syntax_keyword: &'static str,
+    pub syntax_string: &'static str,
+    pub syntax_number: &'static str,
+    pub syntax_comment: &'static str,
+    pub syntax_function: &'static str,
+    pub syntax_variable: &'static str,
+    pub syntax_type: &'static str,
+    pub syntax_operator: &'static str,
+    pub syntax_punctuation: &'static str,
+    pub syntax_tag: &'static str,
+    pub syntax_attribute: &'static str,
+    pub syntax_invalid: &'static str,
 }
 
 pub const DARK: Theme = Theme {
@@ -61,6 +73,18 @@ pub const DARK: Theme = Theme {
     info_fg: "#8fb8f4",
     info_subtle: "#122844",
     overlay: "rgba(0, 0, 0, 0.6)",
+    syntax_keyword: "#c4a5f2",
+    syntax_string: "#84d9a1",
+    syntax_number: "#f2c65c",
+    syntax_comment: "#6b7b89",
+    syntax_function: "#8fb8f4",
+    syntax_variable: "#f7f9fa",
+    syntax_type: "#5bd1c8",
+    syntax_operator: "#94a2ae",
+    syntax_punctuation: "#6b7b89",
+    syntax_tag: "#f59b96",
+    syntax_attribute: "#f2c65c",
+    syntax_invalid: "#dc3d33",
 };
 
 pub const LIGHT: Theme = Theme {
@@ -92,6 +116,18 @@ pub const LIGHT: Theme = Theme {
     info_fg: "#255494",
     info_subtle: "#d6e6fd",
     overlay: "rgba(14, 19, 23, 0.45)",
+    syntax_keyword: "#6033c4",
+    syntax_string: "#1c6e3d",
+    syntax_number: "#94660a",
+    syntax_comment: "#94a2ae",
+    syntax_function: "#255494",
+    syntax_variable: "#1a2127",
+    syntax_type: "#0c5f5c",
+    syntax_operator: "#6b7b89",
+    syntax_punctuation: "#94a2ae",
+    syntax_tag: "#a02620",
+    syntax_attribute: "#94660a",
+    syntax_invalid: "#dc3d33",
 };
 
 pub const NIGHT: Theme = Theme {
@@ -123,6 +159,18 @@ pub const NIGHT: Theme = Theme {
     info_fg: "#8fb8f4",
     info_subtle: "#122844",
     overlay: "rgba(0, 0, 0, 0.65)",
+    syntax_keyword: "#c4a5f2",
+    syntax_string: "#84d9a1",
+    syntax_number: "#f2c65c",
+    syntax_comment: "#96805f",
+    syntax_function: "#8fb8f4",
+    syntax_variable: "#e8dcc8",
+    syntax_type: "#5bd1c8",
+    syntax_operator: "#b8a081",
+    syntax_punctuation: "#96805f",
+    syntax_tag: "#f59b96",
+    syntax_attribute: "#f2c65c",
+    syntax_invalid: "#dc3d33",
 };
 
 pub const SEPIA: Theme = Theme {
@@ -154,6 +202,18 @@ pub const SEPIA: Theme = Theme {
     info_fg: "#255494",
     info_subtle: "#d6e6fd",
     overlay: "rgba(41, 35, 27, 0.45)",
+    syntax_keyword: "#6033c4",
+    syntax_string: "#1c6e3d",
+    syntax_number: "#94660a",
+    syntax_comment: "#96805f",
+    syntax_function: "#255494",
+    syntax_variable: "#29231b",
+    syntax_type: "#0c5f5c",
+    syntax_operator: "#77654a",
+    syntax_punctuation: "#96805f",
+    syntax_tag: "#a02620",
+    syntax_attribute: "#94660a",
+    syntax_invalid: "#dc3d33",
 };
 
 /// ANSI-16 fallback. Prefer this in a TUI: it respects whatever palette
@@ -195,6 +255,18 @@ pub const fn ansi(role: &str) -> Ansi {
         b"info-fg" => Ansi::BrightBlue,
         b"info-subtle" => Ansi::Reset,
         b"overlay" => Ansi::Reset,
+        b"syntax-keyword" => Ansi::Reset,
+        b"syntax-string" => Ansi::Reset,
+        b"syntax-number" => Ansi::Reset,
+        b"syntax-comment" => Ansi::Reset,
+        b"syntax-function" => Ansi::Reset,
+        b"syntax-variable" => Ansi::Reset,
+        b"syntax-type" => Ansi::Reset,
+        b"syntax-operator" => Ansi::Reset,
+        b"syntax-punctuation" => Ansi::Reset,
+        b"syntax-tag" => Ansi::Reset,
+        b"syntax-attribute" => Ansi::Reset,
+        b"syntax-invalid" => Ansi::Reset,
         _ => Ansi::Reset,
     }
 }

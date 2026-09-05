@@ -28,5 +28,17 @@
   "info": "{color.blue.700}",
   "info-fg": "{color.blue.700}",
   "info-subtle": "{color.blue.100}",
-  "overlay": "rgba(41, 35, 27, 0.45)"
+  "overlay": "rgba(41, 35, 27, 0.45)",
+  "syntax-keyword": "{color.violet.700}",
+  "syntax-string": "{color.green.700}",
+  "syntax-number": "{color.amber.700}",
+  "syntax-comment": "{color.sand.500}",
+  "syntax-function": "{color.blue.700}",
+  "syntax-variable": "{color.sand.900}",
+  "syntax-type": "{color.accent.700}",
+  "syntax-operator": "{color.sand.600}",
+  "syntax-punctuation": "{color.sand.500}",
+  "syntax-tag": "{color.red.700}",
+  "syntax-attribute": "{color.amber.700}",
+  "syntax-invalid": "{color.red.500}"
 }

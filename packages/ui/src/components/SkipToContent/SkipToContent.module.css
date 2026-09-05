@@ -1,0 +1,21 @@
+@layer wertkit.components {
+  /* Off-screen until focused - the first Tab stop on the page. */
+  .root {
+    position: absolute;
+    inset-inline-start: var(--wk-space-2);
+    top: var(--wk-space-2);
+    z-index: var(--wk-z-toast);
+    transform: translateY(calc(-100% - var(--wk-space-4)));
+    padding: var(--wk-space-2) var(--wk-space-3);
+    background: var(--wk-bg-raised);
+    color: var(--wk-fg);
+    border: var(--wk-border-thin) solid var(--wk-border-strong);
+    border-radius: var(--wk-radius-md);
+    box-shadow: var(--wk-shadow-md);
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-md);
+    text-decoration: none;
+    transition: transform var(--wk-motion-fast) var(--wk-motion-ease);
+  }
+  .root:focus { transform: translateY(0); }
+}
