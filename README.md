@@ -14,7 +14,7 @@ Deep-links for review and headless capture:
 |---|---|
 | `packages/tokens` | Source of truth. `primitives.json` + 4 themes → generates `tokens.css`, `tokens.ts`, `tokens.rs` |
 | `packages/ui` | `@wertkit/ui` - React components. Radix behaviour, CSS Modules, zero styling runtime |
-| `spec/` | The naming contract and the CLI output contract. Read these first |
+| `spec/` | The naming contract, design conventions, and the CLI output contract. Read these first |
 | `preview/` | Kitchen-sink page - the visual regression surface |
 
 ## Quick start (app side)
