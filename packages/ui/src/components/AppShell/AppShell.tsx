@@ -50,7 +50,7 @@ export function AppShell({
           {titlebar}
         </header>
       )}
-      <div className={styles.body}>
+      <div className={styles.body} data-has-sidebar={sidebar ? 'true' : undefined}>
         {sidebar && (
           <nav className={styles.sidebar} aria-label="Primary">
             {sidebar}

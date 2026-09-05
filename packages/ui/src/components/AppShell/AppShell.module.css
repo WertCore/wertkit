@@ -23,7 +23,11 @@
   /* macOS traffic lights sit top-left; reserve room when overlaying them. */
   .titlebar[data-inset-controls='true'] { padding-inline-start: 78px; }
 
-  .body { display: grid; grid-template-columns: auto 1fr; min-height: 0; }
+  /* One column by default. With `auto 1fr` unconditionally, a shell with no
+     sidebar puts <main> in the `auto` track, so it is sized to its content and
+     leaves the rest of the window empty. */
+  .body { display: grid; grid-template-columns: 1fr; min-height: 0; }
+  .body[data-has-sidebar='true'] { grid-template-columns: auto 1fr; }
   .sidebar {
     width: var(--wk-sidebar-w, 240px);
     border-inline-end: var(--wk-border-thin) solid var(--wk-border);
@@ -33,7 +37,10 @@
   .main { min-width: 0; overflow: auto; padding-bottom: var(--wk-safe-b); }
 
   @media (max-width: 720px) {
-    .body { grid-template-columns: 1fr; }
+    /* Must repeat the attribute selector: collapsing the sidebar has to beat
+       the `[data-has-sidebar]` rule above, which is more specific than `.body`. */
+    .body,
+    .body[data-has-sidebar='true'] { grid-template-columns: 1fr; }
     .sidebar { display: none; }
   }
 }
