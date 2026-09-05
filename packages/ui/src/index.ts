@@ -73,6 +73,11 @@ export type { HighlightTextProps } from './components/HighlightText/HighlightTex
 export { SkipToContent } from './components/SkipToContent/SkipToContent';
 export type { SkipToContentProps } from './components/SkipToContent/SkipToContent';
 
+export { Card } from './components/Card/Card';
+export type { CardProps, CardVariant, CardPadding } from './components/Card/Card';
+export { Stepper } from './components/Stepper/Stepper';
+export type { StepperProps, Step } from './components/Stepper/Stepper';
+
 export { Table, Thead, Tbody, Tr, Th, Td } from './components/Table/Table';
 export type { TableProps, TrProps, ThProps, TdProps } from './components/Table/Table';
 export { Badge } from './components/Badge/Badge';
