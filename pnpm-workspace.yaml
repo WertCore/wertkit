@@ -2,9 +2,8 @@ packages:
   - 'packages/*'
   - 'preview'
 
+# esbuild's postinstall resolves its platform binary; Vite cannot build without
+# it. pnpm 11 requires an explicit decision here, and leaving the entry unset
+# fails the install rather than warning.
 allowBuilds:
-  esbuild: set this to true or false
-
-# esbuild ships a platform binary via postinstall; Vite cannot build without it.
-onlyBuiltDependencies:
-  - esbuild
+  esbuild: true
