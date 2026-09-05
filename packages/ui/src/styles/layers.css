@@ -1,0 +1,8 @@
+/*
+ * Layer order is declared once, here, and imported first.
+ *
+ * Anything an app writes outside these layers beats wertkit regardless of
+ * specificity, so overriding a component is "write the rule" rather than a
+ * specificity fight. Do not add !important to this package.
+ */
+@layer wertkit.tokens, wertkit.components;

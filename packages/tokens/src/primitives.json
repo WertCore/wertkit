@@ -1,0 +1,153 @@
+{
+  "$comment": "Raw values. Never consumed by apps directly - themes map roles onto these.",
+  "color": {
+    "white": "#ffffff",
+    "black": "#000000",
+    "slate": {
+      "50": "#f7f9fa",
+      "100": "#eef1f4",
+      "200": "#dde3e8",
+      "300": "#c2cbd3",
+      "400": "#94a2ae",
+      "500": "#6b7b89",
+      "600": "#52616e",
+      "700": "#414d58",
+      "800": "#2b343c",
+      "900": "#1a2127",
+      "950": "#0e1317"
+    },
+    "sand": {
+      "50": "#fbf8f3",
+      "100": "#f4ede1",
+      "200": "#e8dcc8",
+      "300": "#d6c4a6",
+      "400": "#b8a081",
+      "500": "#96805f",
+      "600": "#77654a",
+      "700": "#5d4f3a",
+      "800": "#40372a",
+      "900": "#29231b",
+      "950": "#191410"
+    },
+    "accent": {
+      "50": "#eafaf8",
+      "100": "#c9f2ee",
+      "200": "#96e5de",
+      "300": "#5bd1c8",
+      "400": "#2bb5ab",
+      "500": "#12958d",
+      "600": "#0b7772",
+      "700": "#0c5f5c",
+      "800": "#0e4c4a",
+      "900": "#0f3f3e",
+      "950": "#042625"
+    },
+    "red": {
+      "100": "#fdd9d7",
+      "300": "#f59b96",
+      "500": "#dc3d33",
+      "700": "#a02620",
+      "900": "#4a1512"
+    },
+    "amber": {
+      "100": "#fcecc9",
+      "300": "#f2c65c",
+      "500": "#cf9310",
+      "700": "#94660a",
+      "900": "#442f06"
+    },
+    "green": {
+      "100": "#d3f2dc",
+      "300": "#84d9a1",
+      "500": "#2ea45c",
+      "700": "#1c6e3d",
+      "900": "#0f321c"
+    },
+    "blue": {
+      "100": "#d6e6fd",
+      "300": "#8fb8f4",
+      "500": "#3b7fd8",
+      "700": "#255494",
+      "900": "#122844"
+    }
+  },
+  "font": {
+    "sans": "Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+    "mono": "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+  },
+  "text": {
+    "xs": {
+      "size": "0.75rem",
+      "line": "1rem"
+    },
+    "sm": {
+      "size": "0.8125rem",
+      "line": "1.25rem"
+    },
+    "md": {
+      "size": "0.875rem",
+      "line": "1.5rem"
+    },
+    "lg": {
+      "size": "1rem",
+      "line": "1.625rem"
+    },
+    "xl": {
+      "size": "1.25rem",
+      "line": "1.875rem"
+    },
+    "2xl": {
+      "size": "1.5rem",
+      "line": "2.125rem"
+    }
+  },
+  "weight": {
+    "regular": "400",
+    "medium": "500",
+    "semibold": "600"
+  },
+  "space": {
+    "0": "0",
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "6": "24px",
+    "8": "32px",
+    "12": "48px",
+    "16": "64px"
+  },
+  "radius": {
+    "sm": "6px",
+    "md": "8px",
+    "lg": "12px",
+    "full": "9999px"
+  },
+  "border": {
+    "thin": "1px",
+    "thick": "2px"
+  },
+  "shadow": {
+    "sm": "0 1px 2px rgba(0,0,0,0.04)",
+    "md": "0 8px 24px -6px rgba(0,0,0,0.10), 0 2px 6px -2px rgba(0,0,0,0.05)"
+  },
+  "motion": {
+    "fast": "120ms",
+    "base": "200ms",
+    "ease": "cubic-bezier(0.2, 0, 0.2, 1)",
+    "ease-out": "cubic-bezier(0, 0, 0.2, 1)"
+  },
+  "z": {
+    "base": "0",
+    "sticky": "100",
+    "overlay": "200",
+    "modal": "300",
+    "popover": "400",
+    "toast": "500"
+  },
+  "tracking": {
+    "tight": "-0.014em",
+    "normal": "0",
+    "wide": "0.02em"
+  }
+}

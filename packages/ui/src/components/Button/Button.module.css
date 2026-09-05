@@ -1,0 +1,74 @@
+@layer wertkit.components {
+  .root {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--wk-space-2);
+    font-family: var(--wk-font-sans);
+    font-weight: var(--wk-weight-medium);
+    line-height: 1;
+    border-radius: var(--wk-radius-md);
+    border: var(--wk-border-thin) solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    text-decoration: none;
+    transition:
+      background-color var(--wk-motion-fast) var(--wk-motion-ease),
+      border-color var(--wk-motion-fast) var(--wk-motion-ease),
+      color var(--wk-motion-fast) var(--wk-motion-ease);
+  }
+
+  .root:focus-visible {
+    outline: var(--wk-focus-width) solid var(--wk-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .root:disabled,
+  .root[data-loading='true'] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .sm { height: var(--wk-control-h-sm); padding-inline: var(--wk-space-2); font-size: var(--wk-text-sm); }
+  .md { height: var(--wk-control-h-md); padding-inline: var(--wk-control-px); font-size: var(--wk-text-md); }
+  .lg { height: var(--wk-control-h-lg); padding-inline: var(--wk-space-4); font-size: var(--wk-text-lg); }
+
+  .iconOnly.sm { width: var(--wk-control-h-sm); padding-inline: 0; }
+  .iconOnly.md { width: var(--wk-control-h-md); padding-inline: 0; }
+  .iconOnly.lg { width: var(--wk-control-h-lg); padding-inline: 0; }
+
+  .primary { background: var(--wk-accent); color: var(--wk-accent-fg); }
+  .primary:hover:not(:disabled):not([data-loading='true']) { background: var(--wk-accent-hover); }
+
+  .secondary {
+    background: var(--wk-bg-raised);
+    color: var(--wk-fg);
+    border-color: var(--wk-border-strong);
+  }
+  .secondary:hover:not(:disabled):not([data-loading='true']) { background: var(--wk-bg-subtle); }
+
+  .ghost { background: transparent; color: var(--wk-fg-muted); }
+  .ghost:hover:not(:disabled):not([data-loading='true']) {
+    background: var(--wk-bg-subtle);
+    color: var(--wk-fg);
+  }
+
+  .danger { background: var(--wk-danger); color: var(--wk-fg-on-solid); }
+  .danger:hover:not(:disabled):not([data-loading='true']) { filter: brightness(0.92); }
+
+  .spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: var(--wk-radius-full);
+    animation: wk-spin 600ms linear infinite;
+  }
+
+  @keyframes wk-spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner { animation-duration: 2s; }
+  }
+}

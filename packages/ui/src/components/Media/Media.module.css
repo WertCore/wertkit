@@ -1,0 +1,31 @@
+@layer wertkit.components {
+  .image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    /* Set from width/height or aspectRatio so the box is reserved before the
+       bytes arrive. This is the main CLS lever in any content page. */
+    aspect-ratio: var(--wk-image-ar, auto);
+    background: var(--wk-bg-inset);
+  }
+
+  .skeleton {
+    display: block;
+    background: var(--wk-bg-inset);
+    border-radius: var(--wk-radius-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, var(--wk-bg-subtle), transparent);
+    transform: translateX(-100%);
+    animation: wk-shimmer 1.4s infinite;
+  }
+  @keyframes wk-shimmer { to { transform: translateX(100%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .skeleton::after { animation: none; }
+  }
+}

@@ -1,0 +1,22 @@
+@layer wertkit.components {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wk-space-1);
+    font-family: var(--wk-font-sans);
+  }
+  .label {
+    font-size: var(--wk-text-sm);
+    line-height: var(--wk-leading-sm);
+    font-weight: var(--wk-weight-medium);
+    color: var(--wk-fg);
+  }
+  .required { color: var(--wk-danger); margin-inline-start: 2px; }
+  .hint, .error {
+    margin: 0;
+    font-size: var(--wk-text-xs);
+    line-height: var(--wk-leading-xs);
+  }
+  .hint { color: var(--wk-fg-muted); }
+  .error { color: var(--wk-danger-fg); }
+}
