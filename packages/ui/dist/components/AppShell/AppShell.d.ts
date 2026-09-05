@@ -11,6 +11,8 @@ export interface AppShellProps {
     sidebar?: ReactNode;
     sidebarWidth?: string;
     children: ReactNode;
+    /** id on <main>, so SkipToContent has a target. */
+    mainId?: string;
     className?: string;
 }
 /**
@@ -20,4 +22,4 @@ export interface AppShellProps {
  * <main> is a landmark, so the primary content region is reachable by
  * skip-link and identifiable to crawlers.
  */
-export declare function AppShell({ titlebar, draggable, insetWindowControls, sidebar, sidebarWidth, children, className, }: AppShellProps): import("react").JSX.Element;
+export declare function AppShell({ titlebar, draggable, insetWindowControls, sidebar, sidebarWidth, children, mainId, className, }: AppShellProps): import("react").JSX.Element;

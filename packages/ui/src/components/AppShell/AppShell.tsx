@@ -14,6 +14,8 @@ export interface AppShellProps {
   sidebar?: ReactNode;
   sidebarWidth?: string;
   children: ReactNode;
+  /** id on <main>, so SkipToContent has a target. */
+  mainId?: string;
   className?: string;
 }
 
@@ -31,6 +33,7 @@ export function AppShell({
   sidebar,
   sidebarWidth,
   children,
+  mainId = 'wk-main',
   className,
 }: AppShellProps) {
   return (
@@ -53,7 +56,9 @@ export function AppShell({
             {sidebar}
           </nav>
         )}
-        <main className={styles.main}>{children}</main>
+        <main id={mainId} className={styles.main} tabIndex={-1}>
+          {children}
+        </main>
       </div>
     </div>
   );

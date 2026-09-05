@@ -37,7 +37,19 @@ export const themes = {
     "info": "#3b7fd8",
     "info-fg": "#8fb8f4",
     "info-subtle": "#122844",
-    "overlay": "rgba(0, 0, 0, 0.6)"
+    "overlay": "rgba(0, 0, 0, 0.6)",
+    "syntax-keyword": "#c4a5f2",
+    "syntax-string": "#84d9a1",
+    "syntax-number": "#f2c65c",
+    "syntax-comment": "#6b7b89",
+    "syntax-function": "#8fb8f4",
+    "syntax-variable": "#f7f9fa",
+    "syntax-type": "#5bd1c8",
+    "syntax-operator": "#94a2ae",
+    "syntax-punctuation": "#6b7b89",
+    "syntax-tag": "#f59b96",
+    "syntax-attribute": "#f2c65c",
+    "syntax-invalid": "#dc3d33"
   },
   "light": {
     "bg": "#ffffff",
@@ -67,7 +79,19 @@ export const themes = {
     "info": "#3b7fd8",
     "info-fg": "#255494",
     "info-subtle": "#d6e6fd",
-    "overlay": "rgba(14, 19, 23, 0.45)"
+    "overlay": "rgba(14, 19, 23, 0.45)",
+    "syntax-keyword": "#6033c4",
+    "syntax-string": "#1c6e3d",
+    "syntax-number": "#94660a",
+    "syntax-comment": "#94a2ae",
+    "syntax-function": "#255494",
+    "syntax-variable": "#1a2127",
+    "syntax-type": "#0c5f5c",
+    "syntax-operator": "#6b7b89",
+    "syntax-punctuation": "#94a2ae",
+    "syntax-tag": "#a02620",
+    "syntax-attribute": "#94660a",
+    "syntax-invalid": "#dc3d33"
   },
   "night": {
     "bg": "#191410",
@@ -97,7 +121,19 @@ export const themes = {
     "info": "#3b7fd8",
     "info-fg": "#8fb8f4",
     "info-subtle": "#122844",
-    "overlay": "rgba(0, 0, 0, 0.65)"
+    "overlay": "rgba(0, 0, 0, 0.65)",
+    "syntax-keyword": "#c4a5f2",
+    "syntax-string": "#84d9a1",
+    "syntax-number": "#f2c65c",
+    "syntax-comment": "#96805f",
+    "syntax-function": "#8fb8f4",
+    "syntax-variable": "#e8dcc8",
+    "syntax-type": "#5bd1c8",
+    "syntax-operator": "#b8a081",
+    "syntax-punctuation": "#96805f",
+    "syntax-tag": "#f59b96",
+    "syntax-attribute": "#f2c65c",
+    "syntax-invalid": "#dc3d33"
   },
   "sepia": {
     "bg": "#fbf8f3",
@@ -127,7 +163,19 @@ export const themes = {
     "info": "#255494",
     "info-fg": "#255494",
     "info-subtle": "#d6e6fd",
-    "overlay": "rgba(41, 35, 27, 0.45)"
+    "overlay": "rgba(41, 35, 27, 0.45)",
+    "syntax-keyword": "#6033c4",
+    "syntax-string": "#1c6e3d",
+    "syntax-number": "#94660a",
+    "syntax-comment": "#96805f",
+    "syntax-function": "#255494",
+    "syntax-variable": "#29231b",
+    "syntax-type": "#0c5f5c",
+    "syntax-operator": "#77654a",
+    "syntax-punctuation": "#96805f",
+    "syntax-tag": "#a02620",
+    "syntax-attribute": "#94660a",
+    "syntax-invalid": "#dc3d33"
   }
 } as const;
 export type ColorRole = keyof (typeof themes)['light'];

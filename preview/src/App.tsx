@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import {
-  Alert, AppShell, Badge, Breadcrumbs, Button, Checkbox, Combobox, Dialog,
-  DialogClose, EmptyState, Field, Heading, Input, Kbd, Link, Menu, MenuItem,
-  MenuLabel, MenuSeparator, SegmentedControl, Select, SelectItem, Skeleton,
+  Alert, AppShell, Badge, Breadcrumbs, Button, Checkbox, CodeBlock, CodeSurface,
+  Combobox, CommandEmpty, CommandGroup, CommandItem, CommandPalette, Dialog,
+  DialogClose, EmptyState, Field, FormSection, Heading, HighlightText, Input,
+  Kbd, KeyValueEditor, Link, Menu, MenuItem, MenuLabel, MenuSeparator,
+  SegmentedControl, Select, SelectItem, SettingRow, SkipToContent, Skeleton,
   Spinner, SplitPane, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
   Tbody, Td, Text, Textarea, Th, Thead, ThemeProvider, ToastProvider, Tooltip,
-  TooltipProvider, Tr, useTheme, useToast,
+  TooltipProvider, Tr, Tree, TreeItem, useTheme, useToast,
 } from '@wertkit/ui';
+import type { KeyValuePair } from '@wertkit/ui';
 import '@wertkit/ui/styles.css';
 
 const THEMES = ['system', 'light', 'dark', 'sepia', 'night'] as const;
@@ -52,6 +55,34 @@ function Kitchen() {
   const [bodyType, setBodyType] = useState('json');
   const [url, setUrl] = useState('{{baseUrl}}/users');
   const [paneSize, setPaneSize] = useState(220);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({ c1: true, f1: true });
+  const [selected, setSelected] = useState('r1');
+  const [paletteOpen, setPaletteOpen] = useState(
+    new URLSearchParams(window.location.search).get('palette') === '1',
+  );
+  const [pq, setPq] = useState('');
+  const [headers, setHeaders] = useState<KeyValuePair[]>([
+    { id: 'h1', key: 'Authorization', value: 'Bearer {{token}}', enabled: true },
+    { id: 'h2', key: 'Accept', value: 'application/json', enabled: false },
+  ]);
+
+  const TREE = [
+    { id: 'c1', label: 'Selis API', level: 1, kids: true },
+    { id: 'f1', label: 'auth', level: 2, kids: true },
+    { id: 'r1', label: 'POST /login', level: 3, kids: false },
+    { id: 'r2', label: 'GET /session', level: 3, kids: false },
+    { id: 'f2', label: 'documents', level: 2, kids: true },
+  ].filter((n) => {
+    if (n.level === 2) return expanded.c1;
+    if (n.level === 3) return expanded.c1 && expanded.f1;
+    return true;
+  });
+
+  const COMMANDS = [
+    { id: 'new', label: 'New request', hint: '⌘N' },
+    { id: 'import', label: 'Import collection', hint: '' },
+    { id: 'env', label: 'Switch environment', hint: '⌘E' },
+  ].filter((c) => c.label.toLowerCase().includes(pq.trim().toLowerCase()));
 
   return (
     <div
@@ -231,6 +262,91 @@ function Kitchen() {
         </Alert>
       </Section>
 
+      <Section title="Tree + palette">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--wk-space-4)' }}>
+          <div style={{ border: '1px solid var(--wk-border)', borderRadius: 'var(--wk-radius-md)', padding: 'var(--wk-space-2)' }}>
+            <Tree
+              aria-label="Collections"
+              onActivate={setSelected}
+              onToggle={(id, open) => setExpanded((e) => ({ ...e, [id]: open }))}
+            >
+              {TREE.map((n, i) => (
+                <TreeItem
+                  key={n.id}
+                  id={n.id}
+                  level={n.level}
+                  hasChildren={n.kids}
+                  expanded={expanded[n.id]}
+                  selected={selected === n.id}
+                  posInSet={i + 1}
+                  setSize={TREE.length}
+                  onSelect={setSelected}
+                  onToggle={(id, open) => setExpanded((e) => ({ ...e, [id]: open }))}
+                >
+                  <HighlightText text={n.label} query="log" />
+                </TreeItem>
+              ))}
+            </Tree>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--wk-space-2)' }}>
+            <Button onClick={() => setPaletteOpen(true)}>Open command palette</Button>
+            <CodeSurface
+              toolbar={<><span>response.json</span><span style={{ marginInlineStart: 'auto' }}>200 OK</span></>}
+              status={<span>3 lines · JSON</span>}
+            >
+              <CodeBlock aria-label="Response body" code={'{\n  "id": 42,\n  "ok": true\n}'} />
+            </CodeSurface>
+          </div>
+        </div>
+        <CommandPalette
+          open={paletteOpen}
+          onOpenChange={setPaletteOpen}
+          query={pq}
+          onQueryChange={setPq}
+          footer={<><Kbd keys={['↑', '↓']} /> navigate <Kbd>esc</Kbd> close</>}
+        >
+          {COMMANDS.length === 0 ? (
+            <CommandEmpty>No commands match "{pq}"</CommandEmpty>
+          ) : (
+            <CommandGroup heading="Commands">
+              {COMMANDS.map((c) => (
+                <CommandItem
+                  key={c.id}
+                  id={c.id}
+                  hint={c.hint}
+                  onSelect={() => { toast({ title: c.label }); setPaletteOpen(false); }}
+                >
+                  <HighlightText text={c.label} query={pq} />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          )}
+        </CommandPalette>
+      </Section>
+
+      <Section title="Settings + key/value">
+        <FormSection
+          title="Transport"
+          description="How requests leave the app."
+          action={<Badge tone="accent">relay</Badge>}
+        >
+          <SettingRow label="Follow redirects" description="Up to 10 hops.">
+            <Switch defaultChecked aria-label="Follow redirects" />
+          </SettingRow>
+          <SettingRow label="Timeout" description="Abort after this long.">
+            <span style={{ width: 120 }}><Input size="sm" mono defaultValue="30000" /></span>
+          </SettingRow>
+        </FormSection>
+        <KeyValueEditor
+          rows={headers}
+          onChange={setHeaders}
+          keyLabel="Header"
+          valueLabel="Value"
+          keyPlaceholder="Content-Type"
+          valuePlaceholder="application/json"
+        />
+      </Section>
+
       <Section title="Split + empty">
         <div style={{ height: 190, border: '1px solid var(--wk-border)', borderRadius: 'var(--wk-radius-md)', overflow: 'hidden' }}>
           <SplitPane size={paneSize} onSizeChange={setPaneSize} min={120} defaultSize={220} aria-label="Resize sidebar">
@@ -271,6 +387,7 @@ export default function App() {
     >
       <TooltipProvider>
         <ToastProvider>
+          <SkipToContent />
           <AppShell titlebar={<ThemeBar />}>
             <Kitchen />
           </AppShell>

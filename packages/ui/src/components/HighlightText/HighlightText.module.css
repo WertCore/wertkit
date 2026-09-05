@@ -1,0 +1,11 @@
+@layer wertkit.components {
+  /* The UA default for <mark> is a fixed yellow that ignores the theme and
+     fails contrast on the dark surfaces. Keep the element, retheme the paint. */
+  .mark {
+    background: var(--wk-accent-subtle);
+    color: var(--wk-accent);
+    font-weight: var(--wk-weight-medium);
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+}
