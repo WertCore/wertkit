@@ -1,0 +1,42 @@
+@layer wertkit.components {
+  .wrapper { width: 100%; overflow-x: auto; }
+  .root {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-md);
+    color: var(--wk-fg);
+  }
+  .caption {
+    caption-side: top;
+    text-align: start;
+    padding-bottom: var(--wk-space-2);
+    font-size: var(--wk-text-sm);
+    color: var(--wk-fg-muted);
+  }
+  .th {
+    text-align: start;
+    font-weight: var(--wk-weight-medium);
+    font-size: var(--wk-text-sm);
+    color: var(--wk-fg-muted);
+    padding: var(--wk-cell-py) var(--wk-space-3);
+    border-bottom: var(--wk-border-thin) solid var(--wk-border);
+    white-space: nowrap;
+  }
+  .td {
+    padding: var(--wk-cell-py) var(--wk-space-3);
+    border-bottom: var(--wk-border-thin) solid var(--wk-border);
+    vertical-align: top;
+  }
+  .numeric { text-align: end; font-family: var(--wk-font-mono); font-variant-numeric: tabular-nums; }
+  .captionHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .row[data-selected='true'] { background: var(--wk-accent-subtle); }
+  .interactive .row:hover { background: var(--wk-bg-subtle); }
+}

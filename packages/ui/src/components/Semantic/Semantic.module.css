@@ -1,0 +1,48 @@
+@layer wertkit.components {
+  .heading {
+    font-family: var(--wk-font-sans);
+    color: var(--wk-fg);
+    font-weight: var(--wk-weight-semibold);
+    letter-spacing: var(--wk-tracking-tight);
+    margin: 0;
+    /* text-wrap: balance is progressive - ignored by older WebKit (Tauri/GTK). */
+    text-wrap: balance;
+  }
+  .text { font-family: var(--wk-font-sans); color: var(--wk-fg); margin: 0; }
+  .muted { color: var(--wk-fg-muted); }
+  .subtle { color: var(--wk-fg-subtle); }
+  .danger { color: var(--wk-danger-fg); }
+  .mono { font-family: var(--wk-font-mono); }
+
+  .xs { font-size: var(--wk-text-xs); line-height: var(--wk-leading-xs); }
+  .sm { font-size: var(--wk-text-sm); line-height: var(--wk-leading-sm); }
+  .md { font-size: var(--wk-text-md); line-height: var(--wk-leading-md); }
+  .lg { font-size: var(--wk-text-lg); line-height: var(--wk-leading-lg); }
+  .xl { font-size: var(--wk-text-xl); line-height: var(--wk-leading-xl); }
+  .xxl { font-size: var(--wk-text-2xl); line-height: var(--wk-leading-2xl); }
+
+  .link {
+    color: var(--wk-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    border-radius: var(--wk-radius-sm);
+  }
+  .link:hover { color: var(--wk-accent-hover); }
+  .link:focus-visible {
+    outline: var(--wk-focus-width) solid var(--wk-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}

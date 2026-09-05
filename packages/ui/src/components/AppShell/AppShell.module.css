@@ -1,0 +1,39 @@
+@layer wertkit.components {
+  .root {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100dvh; /* not 100vh - iOS Safari overshoots with the URL bar */
+    background: var(--wk-bg);
+    color: var(--wk-fg);
+    font-family: var(--wk-font-sans);
+    padding-inline-start: var(--wk-safe-l);
+    padding-inline-end: var(--wk-safe-r);
+  }
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: var(--wk-space-2);
+    height: calc(var(--wk-titlebar-h) + var(--wk-safe-t));
+    padding-top: var(--wk-safe-t);
+    padding-inline: var(--wk-space-3);
+    box-sizing: border-box;
+    border-bottom: var(--wk-border-thin) solid var(--wk-border);
+    user-select: none;
+  }
+  /* macOS traffic lights sit top-left; reserve room when overlaying them. */
+  .titlebar[data-inset-controls='true'] { padding-inline-start: 78px; }
+
+  .body { display: grid; grid-template-columns: auto 1fr; min-height: 0; }
+  .sidebar {
+    width: var(--wk-sidebar-w, 240px);
+    border-inline-end: var(--wk-border-thin) solid var(--wk-border);
+    overflow-y: auto;
+    padding-bottom: var(--wk-safe-b);
+  }
+  .main { min-width: 0; overflow: auto; padding-bottom: var(--wk-safe-b); }
+
+  @media (max-width: 720px) {
+    .body { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+  }
+}

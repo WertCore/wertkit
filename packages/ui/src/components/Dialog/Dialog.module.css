@@ -1,0 +1,69 @@
+@layer wertkit.components {
+  .overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--wk-z-overlay);
+    background: var(--wk-overlay);
+    animation: wk-fade-in var(--wk-motion-base) var(--wk-motion-ease-out);
+  }
+  .content {
+    position: fixed;
+    z-index: var(--wk-z-modal);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(calc(100vw - var(--wk-space-8)), var(--wk-dialog-w, 480px));
+    max-height: calc(100dvh - var(--wk-space-8));
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wk-space-4);
+    padding: var(--wk-surface-p);
+    box-sizing: border-box;
+    background: var(--wk-bg-raised);
+    border: var(--wk-border-thin) solid var(--wk-border);
+    border-radius: var(--wk-radius-lg);
+    box-shadow: var(--wk-shadow-md);
+    font-family: var(--wk-font-sans);
+    color: var(--wk-fg);
+    animation: wk-dialog-in var(--wk-motion-base) var(--wk-motion-ease-out);
+  }
+  .header { display: flex; align-items: flex-start; gap: var(--wk-space-3); }
+  .headings { display: flex; flex-direction: column; gap: var(--wk-space-1); flex: 1; min-width: 0; }
+  .title {
+    margin: 0;
+    font-size: var(--wk-text-lg);
+    line-height: var(--wk-leading-lg);
+    font-weight: var(--wk-weight-semibold);
+    letter-spacing: var(--wk-tracking-tight);
+  }
+  .description {
+    margin: 0;
+    font-size: var(--wk-text-md);
+    line-height: var(--wk-leading-md);
+    color: var(--wk-fg-muted);
+  }
+  .close {
+    all: unset;
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wk-control-h-sm);
+    height: var(--wk-control-h-sm);
+    border-radius: var(--wk-radius-sm);
+    color: var(--wk-fg-muted);
+    cursor: pointer;
+  }
+  .close:hover { background: var(--wk-bg-subtle); color: var(--wk-fg); }
+  .close:focus-visible { outline: var(--wk-focus-width) solid var(--wk-focus-ring); outline-offset: 2px; }
+  .footer { display: flex; justify-content: flex-end; gap: var(--wk-space-2); }
+
+  @keyframes wk-fade-in { from { opacity: 0; } }
+  @keyframes wk-dialog-in {
+    from { opacity: 0; transform: translate(-50%, calc(-50% + 4px)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .overlay, .content { animation: none; }
+  }
+}

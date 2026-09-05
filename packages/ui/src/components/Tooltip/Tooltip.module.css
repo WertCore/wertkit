@@ -1,0 +1,15 @@
+@layer wertkit.components {
+  .content {
+    z-index: var(--wk-z-popover);
+    max-width: 260px;
+    padding: var(--wk-space-1) var(--wk-space-2);
+    background: var(--wk-fg);
+    color: var(--wk-bg);
+    border-radius: var(--wk-radius-sm);
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-xs);
+    line-height: var(--wk-leading-xs);
+    box-shadow: var(--wk-shadow-sm);
+  }
+  .arrow { fill: var(--wk-fg); }
+}

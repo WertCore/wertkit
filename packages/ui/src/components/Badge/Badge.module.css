@@ -1,0 +1,22 @@
+@layer wertkit.components {
+  .root {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wk-space-1);
+    padding: 2px var(--wk-space-2);
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-xs);
+    line-height: var(--wk-leading-xs);
+    font-weight: var(--wk-weight-medium);
+    border-radius: var(--wk-radius-full);
+    border: var(--wk-border-thin) solid transparent;
+    white-space: nowrap;
+  }
+  .neutral { background: var(--wk-bg-subtle); color: var(--wk-fg-muted); }
+  .accent { background: var(--wk-accent-subtle); color: var(--wk-accent); }
+  .danger { background: var(--wk-danger-subtle); color: var(--wk-danger-fg); }
+  .warn { background: var(--wk-warn-subtle); color: var(--wk-warn-fg); }
+  .success { background: var(--wk-success-subtle); color: var(--wk-success-fg); }
+  .info { background: var(--wk-info-subtle); color: var(--wk-info-fg); }
+  .mono { font-family: var(--wk-font-mono); }
+}

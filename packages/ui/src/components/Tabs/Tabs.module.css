@@ -1,0 +1,33 @@
+@layer wertkit.components {
+  .root { display: flex; flex-direction: column; gap: var(--wk-space-3); font-family: var(--wk-font-sans); }
+  .list {
+    display: flex;
+    gap: var(--wk-space-1);
+    border-bottom: var(--wk-border-thin) solid var(--wk-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .list::-webkit-scrollbar { display: none; }
+  .trigger {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--wk-control-h-md);
+    padding-inline: var(--wk-space-3);
+    font-size: var(--wk-text-md);
+    font-weight: var(--wk-weight-medium);
+    color: var(--wk-fg-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    /* Transparent border reserves the box so the active state cannot shift
+       the row by a pixel when it gains its underline. */
+    border-bottom: var(--wk-border-thick) solid transparent;
+    margin-bottom: -1px;
+  }
+  .trigger:hover { color: var(--wk-fg); }
+  .trigger[data-state='active'] { color: var(--wk-accent); border-bottom-color: var(--wk-accent); }
+  .trigger:focus-visible { outline: var(--wk-focus-width) solid var(--wk-focus-ring); outline-offset: -2px; }
+  .content:focus-visible { outline: none; }
+}

@@ -1,0 +1,41 @@
+@layer wertkit.components {
+  .wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wk-space-2);
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-md);
+    color: var(--wk-fg);
+  }
+  .root {
+    all: unset;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wk-bg-inset);
+    border: var(--wk-border-thin) solid var(--wk-border-strong);
+    border-radius: var(--wk-radius-sm);
+    cursor: pointer;
+    transition:
+      background-color var(--wk-motion-fast) var(--wk-motion-ease),
+      border-color var(--wk-motion-fast) var(--wk-motion-ease);
+  }
+  .root[data-state='checked'],
+  .root[data-state='indeterminate'] {
+    background: var(--wk-accent);
+    border-color: var(--wk-accent);
+    color: var(--wk-accent-fg);
+  }
+  .root:focus-visible {
+    outline: var(--wk-focus-width) solid var(--wk-focus-ring);
+    outline-offset: 2px;
+  }
+  .root[data-disabled] { opacity: 0.55; cursor: not-allowed; }
+  .indicator { display: inline-flex; font-size: 12px; }
+  .dash { width: 8px; height: 2px; background: currentColor; border-radius: 1px; }
+  .label { cursor: pointer; }
+}

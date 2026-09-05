@@ -1,0 +1,12 @@
+@layer wertkit.components {
+  .wk-reset-button {
+    appearance: none;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+}

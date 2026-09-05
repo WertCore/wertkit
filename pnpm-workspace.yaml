@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'preview'
+
+allowBuilds:
+  esbuild: set this to true or false
+
+# esbuild ships a platform binary via postinstall; Vite cannot build without it.
+onlyBuiltDependencies:
+  - esbuild

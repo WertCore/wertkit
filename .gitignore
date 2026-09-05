@@ -1,0 +1,7 @@
+node_modules/
+# preview is an internal surface - its build output stays local
+preview/dist/
+# packages/*/dist ARE committed: apps consume this repo as a git dependency
+.DS_Store
+*.log
+.vite/
