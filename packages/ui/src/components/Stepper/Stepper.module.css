@@ -1,0 +1,134 @@
+@layer wertkit.components {
+  .root {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--wk-font-sans);
+    counter-reset: step;
+  }
+
+  .horizontal {
+    flex-direction: row;
+    gap: var(--wk-space-2);
+    align-items: flex-start;
+  }
+
+  .vertical {
+    flex-direction: column;
+    gap: var(--wk-space-4);
+  }
+
+  .step {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--wk-space-3);
+    min-inline-size: 0;
+  }
+
+  .horizontal .step {
+    flex: 1;
+  }
+
+  /*
+   * The connector is drawn from each step except the first, back toward the
+   * previous one. Doing it that way means the last step has no trailing line to
+   * hide, which is where this pattern usually goes wrong.
+   */
+  .horizontal .step:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    inset-block-start: calc(var(--wk-control-h-sm) / 2);
+    inset-inline-end: 100%;
+    inline-size: var(--wk-space-2);
+    block-size: var(--wk-border-thin);
+    background: var(--wk-border);
+  }
+
+  .vertical .step:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    inset-block-end: 100%;
+    inset-inline-start: calc(var(--wk-control-h-sm) / 2);
+    inline-size: var(--wk-border-thin);
+    block-size: var(--wk-space-4);
+    background: var(--wk-border);
+  }
+
+  /* A connector into a reached step reads as travelled. */
+  .complete:not(:first-child)::before,
+  .current:not(:first-child)::before {
+    background: var(--wk-accent);
+  }
+
+  .marker {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    inline-size: var(--wk-control-h-sm);
+    block-size: var(--wk-control-h-sm);
+    border-radius: var(--wk-radius-full);
+    border: var(--wk-border-thin) solid var(--wk-border);
+    background: var(--wk-bg-raised);
+    color: var(--wk-fg-muted);
+    font-size: var(--wk-text-sm);
+    font-weight: var(--wk-weight-medium);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .complete .marker {
+    background: var(--wk-accent);
+    border-color: transparent;
+    color: var(--wk-accent-fg);
+  }
+
+  .current .marker {
+    border-color: var(--wk-accent);
+    color: var(--wk-accent);
+    /* A ring rather than a fill: the current step is where you are, not
+       something already done. */
+    box-shadow: 0 0 0 var(--wk-border-thick) var(--wk-accent-subtle);
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wk-space-1);
+    min-inline-size: 0;
+    padding-block-start: calc((var(--wk-control-h-sm) - var(--wk-leading-sm)) / 2);
+  }
+
+  .label {
+    font-size: var(--wk-text-sm);
+    line-height: var(--wk-leading-sm);
+    font-weight: var(--wk-weight-medium);
+    color: var(--wk-fg-muted);
+  }
+
+  .current .label {
+    color: var(--wk-fg);
+  }
+
+  .complete .label {
+    color: var(--wk-fg-muted);
+  }
+
+  .description {
+    font-size: var(--wk-text-sm);
+    line-height: var(--wk-leading-sm);
+    color: var(--wk-fg-subtle);
+  }
+
+  /* Labels crowd out at narrow widths; the markers still carry the progress. */
+  @media (max-width: 560px) {
+    .horizontal .text {
+      display: none;
+    }
+    .horizontal .step {
+      flex: none;
+    }
+  }
+}

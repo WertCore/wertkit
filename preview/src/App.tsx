@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
   Alert, AppShell, Badge, Breadcrumbs, Button, Checkbox, CodeBlock, CodeSurface,
-  Combobox, CommandEmpty, CommandGroup, CommandItem, CommandPalette, Dialog,
+  Card, Combobox, CommandEmpty, CommandGroup, CommandItem, CommandPalette, Dialog,
   DialogClose, EmptyState, Field, FormSection, Heading, HighlightText, Input,
   Kbd, KeyValueEditor, Link, Menu, MenuItem, MenuLabel, MenuSeparator,
   SegmentedControl, Select, SelectItem, SettingRow, SkipToContent, Skeleton,
-  Spinner, SplitPane, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
+  Spinner, SplitPane, Stepper, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
   Tbody, Td, Text, Textarea, Th, Thead, ThemeProvider, ToastProvider, Tooltip,
   TooltipProvider, Tr, Tree, TreeItem, useTheme, useToast,
 } from '@wertkit/ui';
@@ -55,6 +55,7 @@ function Kitchen() {
   const [bodyType, setBodyType] = useState('json');
   const [url, setUrl] = useState('{{baseUrl}}/users');
   const [paneSize, setPaneSize] = useState(220);
+  const [stepperAt, setStepperAt] = useState(1);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({ c1: true, f1: true });
   const [selected, setSelected] = useState('r1');
   const [paletteOpen, setPaletteOpen] = useState(
@@ -206,6 +207,57 @@ function Kitchen() {
           <TabsContent value="alerts"><Text tone="muted">No alerts.</Text></TabsContent>
           <TabsContent value="settings"><Text tone="muted">Nothing here yet.</Text></TabsContent>
         </Tabs>
+      </Section>
+
+      <Section title="Card">
+        <div style={{ display: 'grid', gap: 'var(--wk-space-3)', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
+          <Card
+            title="Monitor a website"
+            description="Paste a URL and watch its API calls. No setup needed."
+            interactive
+            onClick={() => toast({ title: 'Interactive card', tone: 'info' })}
+          />
+          <Card title="Raised" description="For content that floats above the page." variant="raised" />
+          <Card title="Inset" description="A well, for content sunk into a page." variant="inset" />
+        </div>
+        <Card
+          title="With an action and a footer"
+          description="The header takes a top-right slot; the footer is separated by a rule."
+          action={<Badge tone="success">connected</Badge>}
+          footer={
+            <>
+              <Button size="sm" variant="primary">Save</Button>
+              <Button size="sm" variant="ghost">Cancel</Button>
+            </>
+          }
+        >
+          <Text tone="muted" size="sm">Body content sits between the two.</Text>
+        </Card>
+      </Section>
+
+      <Section title="Stepper">
+        <Stepper
+          aria-label="Certificate setup"
+          current={stepperAt}
+          steps={[
+            { label: 'What this means', description: 'Plain language' },
+            { label: 'Review fingerprint' },
+            { label: 'Install' },
+            { label: 'Verify' },
+          ]}
+        />
+        <div style={{ display: 'flex', gap: 'var(--wk-space-2)' }}>
+          <Button size="sm" onClick={() => setStepperAt((n) => Math.max(0, n - 1))}>Back</Button>
+          <Button size="sm" variant="primary" onClick={() => setStepperAt((n) => Math.min(3, n + 1))}>
+            Next
+          </Button>
+        </div>
+        <Stepper
+          aria-label="Certificate setup, vertical"
+          orientation="vertical"
+          current={stepperAt}
+          steps={['What this means', 'Review fingerprint', 'Install', 'Verify']}
+        />
       </Section>
 
       <Section title="Table: sticky header">
