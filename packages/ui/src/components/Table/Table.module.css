@@ -1,5 +1,14 @@
 @layer wertkit.components {
   .wrapper { width: 100%; overflow-x: auto; }
+  /*
+   * Vertical scroll container for stickyHeader. Only applied when maxBlockSize
+   * is set, so the default table keeps its horizontal-only behaviour.
+   */
+  .scroll {
+    overflow: auto;
+    max-block-size: var(--wk-table-max-block);
+    overscroll-behavior: contain;
+  }
   .root {
     width: 100%;
     border-collapse: collapse;
@@ -39,4 +48,23 @@
   }
   .row[data-selected='true'] { background: var(--wk-accent-subtle); }
   .interactive .row:hover { background: var(--wk-bg-subtle); }
+
+  .sticky .th {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--wk-z-sticky);
+    /*
+     * The header must be opaque or rows scroll through it. Defaults to the page
+     * role; a table on a raised surface overrides --wk-table-header-bg rather
+     * than restyling the cell.
+     */
+    background: var(--wk-table-header-bg, var(--wk-bg));
+    /*
+     * Under border-collapse: collapse the hairline is painted by the table, not
+     * the cell, so on a sticky cell it scrolls away with the body. Keep the
+     * border for layout and draw the visible line as an inset shadow.
+     */
+    border-bottom-color: transparent;
+    box-shadow: inset 0 calc(-1 * var(--wk-border-thin)) 0 var(--wk-border);
+  }
 }
