@@ -1,9 +1,19 @@
 import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from 'react';
+import { HeadingLevel } from '../Semantic/Heading';
 export type CardVariant = 'outlined' | 'raised' | 'inset';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 interface CardOwnProps {
-    /** Optional heading. Rendered as a real <h3> and wired up with aria-labelledby. */
+    /** Optional heading. Rendered as a real heading and wired up with aria-labelledby. */
     title?: ReactNode;
+    /**
+     * Heading level for `title`.
+     *
+     * Exposed rather than fixed because a card is not always at the same depth,
+     * and a hardcoded tag silently breaks the document outline that crawlers and
+     * screen readers walk. Visual size stays constant — only the semantics move,
+     * which is the same split `Heading` makes.
+     */
+    titleLevel?: HeadingLevel;
     description?: ReactNode;
     /** Leading adornment, usually an icon. Decorative. */
     icon?: ReactNode;
@@ -35,5 +45,5 @@ export type CardProps = CardOwnProps & Omit<HTMLAttributes<HTMLDivElement>, keyo
  * so anything that needed a visible container had to hand-roll one — which is
  * how apps drift apart visually.
  */
-export declare function Card({ title, description, icon, action, footer, children, variant, padding, interactive, asChild, className, ...rest }: CardProps): import("react").JSX.Element;
+export declare function Card({ title, titleLevel, description, icon, action, footer, children, variant, padding, interactive, asChild, className, ...rest }: CardProps): import("react").JSX.Element;
 export {};

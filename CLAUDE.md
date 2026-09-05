@@ -25,3 +25,25 @@
   controls. SSR-safe: no `window`/`localStorage` access during render.
 - The four themes (light/dark/sepia/night) and both densities must all be
   checked in `preview/` for any visual change.
+
+## Design conventions
+
+Everything built here is **minimalistic and SEO-sound by default**. Both are
+constraints on the component, not advice for the app using it.
+
+Minimalistic means hairlines over fills, generous whitespace, tracking-tight
+headings, soft diffuse shadows, and radii from the 6/8/12 set. Reach for a
+border before a background, and a background before a shadow. A component that
+needs heavy chrome to read is usually the wrong component.
+
+SEO-sound means the markup is correct before it is styled, because a crawler and
+a screen reader read the same tree:
+
+- **Headings carry a level, never a fixed tag.** `Heading` requires `level` for
+  exactly this reason, and any component rendering a heading must let the caller
+  set it — a card at depth 4 emitting an `h3` breaks the outline silently.
+- Real elements: `button`, `a`, `ol`, `table`, `nav`, `main`. Never a `div` with
+  a click handler.
+- Images declare dimensions. Icon-only controls carry `aria-label`.
+- State conveyed by colour is also conveyed in text, visually hidden if need be.
+- SSR-safe: no `window` or `localStorage` access during render.
