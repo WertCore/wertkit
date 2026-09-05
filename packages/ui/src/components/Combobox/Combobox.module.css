@@ -1,0 +1,38 @@
+@layer wertkit.components {
+  .wrap { position: relative; width: 100%; }
+  .list {
+    position: absolute;
+    z-index: var(--wk-z-popover);
+    top: calc(100% + 4px);
+    inset-inline: 0;
+    max-height: 240px;
+    overflow-y: auto;
+    margin: 0;
+    padding: var(--wk-space-1);
+    list-style: none;
+    box-sizing: border-box;
+    background: var(--wk-bg-raised);
+    border: var(--wk-border-thin) solid var(--wk-border);
+    border-radius: var(--wk-radius-md);
+    box-shadow: var(--wk-shadow-md);
+    font-family: var(--wk-font-sans);
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--wk-space-3);
+    padding: var(--wk-space-1) var(--wk-space-2);
+    min-height: var(--wk-control-h-sm);
+    box-sizing: border-box;
+    font-size: var(--wk-text-md);
+    color: var(--wk-fg);
+    border-radius: var(--wk-radius-sm);
+    cursor: pointer;
+  }
+  .option[data-active='true'] { background: var(--wk-accent-subtle); }
+  .label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mono { font-family: var(--wk-font-mono); }
+  .hint { flex: none; color: var(--wk-fg-subtle); font-size: var(--wk-text-xs); }
+  .empty { padding: var(--wk-space-2); color: var(--wk-fg-subtle); font-size: var(--wk-text-sm); }
+}

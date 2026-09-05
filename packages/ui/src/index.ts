@@ -38,6 +38,24 @@ export type { TabsProps } from './components/Tabs/Tabs';
 export { ToastProvider, useToast } from './components/Toast/Toast';
 export type { ToastOptions, ToastTone, ToastProviderProps } from './components/Toast/Toast';
 
+export { Textarea } from './components/Textarea/Textarea';
+export type { TextareaProps } from './components/Textarea/Textarea';
+export { Combobox } from './components/Combobox/Combobox';
+export type { ComboboxProps, ComboboxSuggestion } from './components/Combobox/Combobox';
+export { SegmentedControl } from './components/SegmentedControl/SegmentedControl';
+export type { SegmentedControlProps, SegmentedOption } from './components/SegmentedControl/SegmentedControl';
+
+export { Alert } from './components/Alert/Alert';
+export type { AlertProps, AlertTone } from './components/Alert/Alert';
+export { EmptyState } from './components/EmptyState/EmptyState';
+export type { EmptyStateProps } from './components/EmptyState/EmptyState';
+export { Spinner } from './components/Spinner/Spinner';
+export type { SpinnerProps } from './components/Spinner/Spinner';
+export { Kbd } from './components/Kbd/Kbd';
+export type { KbdProps } from './components/Kbd/Kbd';
+export { SplitPane } from './components/SplitPane/SplitPane';
+export type { SplitPaneProps } from './components/SplitPane/SplitPane';
+
 export { Table, Thead, Tbody, Tr, Th, Td } from './components/Table/Table';
 export type { TableProps, TrProps, ThProps, TdProps } from './components/Table/Table';
 export { Badge } from './components/Badge/Badge';

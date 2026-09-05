@@ -1,0 +1,25 @@
+@layer wertkit.components {
+  .root { display: flex; min-width: 0; min-height: 0; }
+  .horizontal { flex-direction: row; }
+  .vertical { flex-direction: column; }
+  .pane { min-width: 0; min-height: 0; overflow: auto; }
+  .handle {
+    all: unset;
+    flex: none;
+    position: relative;
+    background: var(--wk-border);
+    transition: background-color var(--wk-motion-fast) var(--wk-motion-ease);
+  }
+  .horizontal > .handle { width: 1px; cursor: col-resize; }
+  .vertical > .handle { height: 1px; cursor: row-resize; }
+  /* Hairline visual, comfortable hit area. */
+  .handle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .horizontal > .handle::after { inset-inline: -3px; }
+  .vertical > .handle::after { inset-block: -3px; }
+  .handle:hover, .handle[data-dragging='true'] { background: var(--wk-accent); }
+  .handle:focus-visible { outline: var(--wk-focus-width) solid var(--wk-focus-ring); z-index: 1; }
+}
