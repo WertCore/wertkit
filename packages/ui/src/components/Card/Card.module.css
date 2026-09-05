@@ -1,0 +1,138 @@
+@layer wertkit.components {
+  .root {
+    /* wertkit sets no global box-sizing reset, and `interactive` is a
+       full-width button — without this its padding would push it past its
+       container. */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wk-space-3);
+    border-radius: var(--wk-radius-lg);
+    font-family: var(--wk-font-sans);
+    color: var(--wk-fg);
+    text-align: start;
+    min-inline-size: 0;
+  }
+
+  .outlined {
+    background: var(--wk-bg-raised);
+    border: var(--wk-border-thin) solid var(--wk-border);
+  }
+
+  .raised {
+    background: var(--wk-bg-raised);
+    border: var(--wk-border-thin) solid var(--wk-border);
+    box-shadow: var(--wk-shadow-md);
+  }
+
+  /* A well rather than a lifted surface — for content sunk into a page. */
+  .inset {
+    background: var(--wk-bg-inset);
+    border: var(--wk-border-thin) solid var(--wk-border);
+  }
+
+  .padding-none {
+    padding: 0;
+  }
+  .padding-sm {
+    padding: var(--wk-space-3);
+  }
+  .padding-md {
+    padding: var(--wk-surface-p);
+  }
+  .padding-lg {
+    padding: var(--wk-space-6);
+  }
+
+  /*
+   * The interactive card is a real <button>, so the browser's default button
+   * styling has to be reset back to a surface before ours applies.
+   */
+  .interactive {
+    inline-size: 100%;
+    font: inherit;
+    cursor: pointer;
+    appearance: none;
+    transition:
+      background var(--wk-motion-fast) ease,
+      border-color var(--wk-motion-fast) ease;
+  }
+
+  .interactive:hover:not(:disabled) {
+    background: var(--wk-bg-subtle);
+    border-color: var(--wk-border-strong);
+  }
+
+  .interactive:focus-visible {
+    outline: var(--wk-border-thick) solid var(--wk-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .interactive:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .top {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--wk-space-3);
+  }
+
+  .icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--wk-text-lg);
+    color: var(--wk-fg-muted);
+    line-height: 1;
+  }
+
+  .head {
+    flex: 1;
+    min-inline-size: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--wk-space-1);
+  }
+
+  .title {
+    margin: 0;
+    font-size: var(--wk-text-md);
+    line-height: var(--wk-leading-md);
+    font-weight: var(--wk-weight-semibold);
+    letter-spacing: var(--wk-tracking-tight);
+    color: var(--wk-fg);
+  }
+
+  .description {
+    margin: 0;
+    max-inline-size: 68ch;
+    font-size: var(--wk-text-sm);
+    line-height: var(--wk-leading-sm);
+    color: var(--wk-fg-muted);
+  }
+
+  .action {
+    flex: none;
+  }
+
+  .body {
+    min-inline-size: 0;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    gap: var(--wk-space-2);
+    padding-block-start: var(--wk-space-3);
+    border-block-start: var(--wk-border-thin) solid var(--wk-border);
+  }
+
+  /* A card with no padding keeps its footer flush with the edge. */
+  .padding-none .footer {
+    padding: var(--wk-space-3);
+    padding-block-start: var(--wk-space-3);
+  }
+}
