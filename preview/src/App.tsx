@@ -207,6 +207,41 @@ function Kitchen() {
         </Tabs>
       </Section>
 
+      <Section title="Table: sticky header">
+        <Text tone="muted" size="sm">
+          Scroll the body - the header row stays pinned and keeps its hairline.
+          Needs maxBlockSize to have something to scroll against.
+        </Text>
+        <Table
+          caption="Captured requests"
+          captionHidden
+          interactive
+          stickyHeader
+          maxBlockSize="14rem"
+        >
+          <Thead>
+            <Tr>
+              <Th>Method</Th><Th>Path</Th><Th>Status</Th><Th numeric>Time (ms)</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {Array.from({ length: 24 }, (_, i) => {
+              const failed = i % 7 === 3;
+              return (
+                <Tr key={i}>
+                  <Td>{i % 3 === 0 ? 'POST' : 'GET'}</Td>
+                  <Td>/v1/orders/{1000 + i}</Td>
+                  <Td>
+                    <Badge tone={failed ? 'danger' : 'success'}>{failed ? 500 : 200}</Badge>
+                  </Td>
+                  <Td numeric>{40 + ((i * 37) % 300)}</Td>
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </Section>
+
       <Section title="Knockport surface">
         <SegmentedControl
           aria-label="Body type"

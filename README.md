@@ -3,6 +3,11 @@
 WertCore's design system. A portable token core plus a web component layer -
 minimalistic, modern, themed, and SEO-sound by default.
 
+**Live kitchen sink: https://wertcore.github.io/wertkit/**
+
+Deep-links for review and headless capture:
+`?theme=light|dark|sepia|night`, `&density=compact`, `&palette=1`.
+
 ## Layout
 
 | Path | What |
@@ -48,5 +53,5 @@ pnpm build       # tokens + ui
 pnpm preview     # kitchen sink on :5173
 ```
 
-Node ≥ 20, pnpm 11. The repo is private; packages are consumed as git deps -
-nothing publishes to npm.
+Node ≥ 20, pnpm 11. Packages are consumed as git deps - nothing publishes to
+npm. Pushing to `main` redeploys the kitchen sink to Pages.
