@@ -1,0 +1,27 @@
+@layer wertkit.components {
+  .root {
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--wk-space-2) var(--wk-space-3);
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-md);
+    line-height: var(--wk-leading-md);
+    color: var(--wk-fg);
+    background: transparent;
+    border: var(--wk-border-thin) solid var(--wk-border);
+    border-radius: var(--wk-radius-md);
+    resize: vertical;
+    transition: border-color var(--wk-motion-fast) var(--wk-motion-ease);
+  }
+  .root::placeholder { color: var(--wk-fg-subtle); }
+  .root:hover:not(:disabled) { border-color: var(--wk-border-strong); }
+  .root:focus-visible {
+    outline: var(--wk-focus-width) solid var(--wk-focus-ring);
+    outline-offset: -1px;
+    border-color: var(--wk-focus-ring);
+  }
+  .root:disabled { opacity: 0.55; cursor: not-allowed; }
+  .root[aria-invalid='true'] { border-color: var(--wk-danger); }
+  .mono { font-family: var(--wk-font-mono); }
+  .noResize { resize: none; }
+}

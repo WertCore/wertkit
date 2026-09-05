@@ -1,0 +1,47 @@
+@layer wertkit.components {
+  .root {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--wk-space-3);
+    padding: var(--wk-space-3) var(--wk-space-4);
+    box-sizing: border-box;
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-md);
+    line-height: var(--wk-leading-md);
+    color: var(--wk-fg);
+    border: var(--wk-border-thin) solid var(--wk-border);
+    border-radius: var(--wk-radius-md);
+    background: var(--wk-bg-subtle);
+  }
+  /* Quiet surface, toned hairline, tone carried by the title and icon only.
+     A full tinted fill reads as a slab at banner width and fights the rest of
+     the language; the border plus coloured title is enough signal. */
+  .info    { border-color: var(--wk-info); }
+  .success { border-color: var(--wk-success); }
+  .warn    { border-color: var(--wk-warn); }
+  .danger  { border-color: var(--wk-danger); }
+
+  .icon { flex: none; display: inline-flex; margin-top: 2px; }
+  .info .icon,    .info .title    { color: var(--wk-info-fg); }
+  .success .icon, .success .title { color: var(--wk-success-fg); }
+  .warn .icon,    .warn .title    { color: var(--wk-warn-fg); }
+  .danger .icon,  .danger .title  { color: var(--wk-danger-fg); }
+
+  .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--wk-space-1); }
+  .title { font-weight: var(--wk-weight-medium); }
+  .actions { display: flex; gap: var(--wk-space-2); margin-top: var(--wk-space-1); }
+  .close {
+    all: unset;
+    flex: none;
+    display: inline-flex;
+    padding: var(--wk-space-1);
+    border-radius: var(--wk-radius-sm);
+    color: var(--wk-fg-muted);
+    cursor: pointer;
+  }
+  .close:hover { color: var(--wk-fg); }
+  .close:focus-visible { outline: var(--wk-focus-width) solid var(--wk-focus-ring); }
+
+  /* Full-bleed variant for app-level banners docked under a titlebar. */
+  .banner { border-inline: 0; border-top: 0; border-radius: 0; }
+}

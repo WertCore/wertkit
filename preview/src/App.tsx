@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import {
-  AppShell, Badge, Breadcrumbs, Button, Checkbox, Dialog, DialogClose, Field,
-  Heading, Input, Link, Menu, MenuItem, MenuLabel, MenuSeparator, Select,
-  SelectItem, Skeleton, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
-  Tbody, Td, Text, Th, Thead, ThemeProvider, ToastProvider, Tooltip,
+  Alert, AppShell, Badge, Breadcrumbs, Button, Checkbox, Combobox, Dialog,
+  DialogClose, EmptyState, Field, Heading, Input, Kbd, Link, Menu, MenuItem,
+  MenuLabel, MenuSeparator, SegmentedControl, Select, SelectItem, Skeleton,
+  Spinner, SplitPane, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
+  Tbody, Td, Text, Textarea, Th, Thead, ThemeProvider, ToastProvider, Tooltip,
   TooltipProvider, Tr, useTheme, useToast,
 } from '@wertkit/ui';
 import '@wertkit/ui/styles.css';
@@ -48,6 +49,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function Kitchen() {
   const { toast } = useToast();
   const [checked, setChecked] = useState(true);
+  const [bodyType, setBodyType] = useState('json');
+  const [url, setUrl] = useState('{{baseUrl}}/users');
+  const [paneSize, setPaneSize] = useState(220);
 
   return (
     <div
@@ -170,6 +174,76 @@ function Kitchen() {
           <TabsContent value="alerts"><Text tone="muted">No alerts.</Text></TabsContent>
           <TabsContent value="settings"><Text tone="muted">Nothing here yet.</Text></TabsContent>
         </Tabs>
+      </Section>
+
+      <Section title="Knockport surface">
+        <SegmentedControl
+          aria-label="Body type"
+          value={bodyType}
+          onValueChange={setBodyType}
+          options={[
+            { value: 'none', label: 'None' },
+            { value: 'json', label: 'JSON' },
+            { value: 'form', label: 'Form' },
+            { value: 'raw', label: 'Raw' },
+          ]}
+        />
+        <Field label="Request URL" hint="Type {{ to complete a variable.">
+          <Combobox
+            mono
+            value={url}
+            onValueChange={setUrl}
+            placeholder="https://api.example.com/v1"
+            suggestions={(v) =>
+              v.includes('{{')
+                ? [
+                    { label: '{{baseUrl}}', hint: 'env' },
+                    { label: '{{apiKey}}', hint: 'secret' },
+                    { label: '{{userId}}', hint: 'collection' },
+                  ]
+                : []
+            }
+          />
+        </Field>
+        <Field label="Body">
+          <Textarea mono rows={3} defaultValue={'{\n  "name": "selis"\n}'} />
+        </Field>
+        <div style={{ display: 'flex', gap: 'var(--wk-space-3)', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Text as="span" size="sm" tone="muted" style={{ whiteSpace: 'nowrap' }}>Open the palette with</Text>
+          <Kbd keys={['⌘', 'K']} />
+          <Spinner size="sm" />
+          <span style={{ width: 200 }}>
+            <Input
+              size="sm"
+              placeholder="Filter requests"
+              startSlot={<span style={{ fontSize: 12 }}>⌕</span>}
+            />
+          </span>
+        </div>
+      </Section>
+
+      <Section title="Alerts">
+        <Alert tone="warn" title="Storage is read-only">
+          The collection folder handle was revoked. Reconnect to keep saving.
+        </Alert>
+        <Alert tone="danger" title="Divergence detected" action={<Button size="sm">Review</Button>}>
+          The on-disk collection changed outside the app.
+        </Alert>
+      </Section>
+
+      <Section title="Split + empty">
+        <div style={{ height: 190, border: '1px solid var(--wk-border)', borderRadius: 'var(--wk-radius-md)', overflow: 'hidden' }}>
+          <SplitPane size={paneSize} onSizeChange={setPaneSize} min={120} defaultSize={220} aria-label="Resize sidebar">
+            <div style={{ padding: 'var(--wk-space-3)' }}>
+              <Text size="sm" tone="muted">Sidebar — drag or focus the divider and use arrows.</Text>
+            </div>
+            <EmptyState
+              title="No request selected"
+              description="Pick a request from the collection tree, or press ⌘K."
+              action={<Button variant="primary" size="sm">New request</Button>}
+            />
+          </SplitPane>
+        </div>
       </Section>
 
       <Section title="Loading">

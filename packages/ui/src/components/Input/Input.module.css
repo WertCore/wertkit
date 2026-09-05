@@ -23,6 +23,21 @@
 
   .mono { font-family: var(--wk-font-mono); }
 
+  /* Adornment shell: the wrapper owns the box, the input goes transparent so
+     focus/invalid styling stays on one element instead of two competing ones. */
+  .shell { position: relative; display: flex; align-items: center; width: 100%; }
+  .slot {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    color: var(--wk-fg-subtle);
+    pointer-events: none;
+  }
+  .slot.start { inset-inline-start: var(--wk-space-2); }
+  .slot.end { inset-inline-end: var(--wk-space-2); pointer-events: auto; }
+  .root.hasStart { padding-inline-start: var(--wk-space-8); }
+  .root.hasEnd { padding-inline-end: var(--wk-space-8); }
+
   .sm { height: var(--wk-control-h-sm); padding-inline: var(--wk-space-2); font-size: var(--wk-text-sm); }
   .md { height: var(--wk-control-h-md); padding-inline: var(--wk-control-px); font-size: var(--wk-text-md); }
   .lg { height: var(--wk-control-h-lg); padding-inline: var(--wk-space-4); font-size: var(--wk-text-lg); }
