@@ -5,3 +5,6 @@ preview/dist/
 .DS_Store
 *.log
 .vite/
+
+# Internal audit notes - keep local, not published
+spec/knockport-coverage.md
