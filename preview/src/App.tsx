@@ -3,7 +3,7 @@ import {
   Alert, AppShell, Badge, Breadcrumbs, Button, Checkbox, CodeBlock, CodeSurface,
   Card, Combobox, CommandEmpty, CommandGroup, CommandItem, CommandPalette, Dialog,
   DialogClose, EmptyState, Field, FormSection, Heading, HighlightText, Input,
-  Kbd, KeyValueEditor, Link, Menu, MenuItem, MenuLabel, MenuSeparator,
+  Kbd, KeyValueEditor, Link, Menu, MenuItem, MenuLabel, MenuSeparator, NavItem, NavList,
   SegmentedControl, Select, SelectItem, SettingRow, SkipToContent, Skeleton,
   Spinner, SplitPane, Stepper, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
   Tbody, Td, Text, Textarea, Th, Thead, ThemeProvider, ToastProvider, Tooltip,
@@ -207,6 +207,21 @@ function Kitchen() {
           <TabsContent value="alerts"><Text tone="muted">No alerts.</Text></TabsContent>
           <TabsContent value="settings"><Text tone="muted">Nothing here yet.</Text></TabsContent>
         </Tabs>
+      </Section>
+
+      <Section title="Navigation">
+        {/* No aria-label here: in a real app this sits inside AppShell's
+            sidebar, which already provides the nav landmark and its name. */}
+        <div style={{ maxInlineSize: '15rem' }}>
+          <NavList>
+            <NavItem current badge={<Badge tone="neutral">128</Badge>}>
+              Traffic
+            </NavItem>
+            <NavItem badge={<Badge tone="danger">2</Badge>}>Breakpoints</NavItem>
+            <NavItem>Rules</NavItem>
+            <NavItem disabled>Unavailable</NavItem>
+          </NavList>
+        </div>
       </Section>
 
       <Section title="Card">
