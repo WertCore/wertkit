@@ -4,7 +4,15 @@ import dts from 'vite-plugin-dts';
 import { basename, resolve } from 'node:path';
 
 export default defineConfig({
-  plugins: [react(), dts({ include: ['src'], rollupTypes: false })],
+  plugins: [react(), dts({
+      include: ['src'],
+      // Tests are source, not surface. Without this the dts plugin emits
+      // `dist/**/​*.test.d.ts` and `dist/test-setup.d.ts` into the published
+      // package — declarations for files that import vitest, which a consumer
+      // does not have.
+      exclude: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'src/test-setup.ts'],
+      rollupTypes: false,
+    })],
   css: {
     modules: {
       // Stable, readable class names. Matters for a design system: consumers
