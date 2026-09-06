@@ -23,7 +23,7 @@ const ye = (t) => ({
   strokeLinejoin: "round",
   "aria-hidden": !0,
   ...t
-}), Ne = (t) => /* @__PURE__ */ e("svg", { ...ye(t), children: /* @__PURE__ */ e("path", { d: "M3 8.5 6.5 12 13 4.5" }) }), Pe = (t) => /* @__PURE__ */ e("svg", { ...ye(t), children: /* @__PURE__ */ e("path", { d: "m4 6 4 4 4-4" }) }), he = (t) => /* @__PURE__ */ e("svg", { ...ye(t), children: /* @__PURE__ */ e("path", { d: "M4 4l8 8M12 4l-8 8" }) }), Be = le(null);
+}), $e = (t) => /* @__PURE__ */ e("svg", { ...ye(t), children: /* @__PURE__ */ e("path", { d: "M3 8.5 6.5 12 13 4.5" }) }), Pe = (t) => /* @__PURE__ */ e("svg", { ...ye(t), children: /* @__PURE__ */ e("path", { d: "m4 6 4 4 4-4" }) }), he = (t) => /* @__PURE__ */ e("svg", { ...ye(t), children: /* @__PURE__ */ e("path", { d: "M4 4l8 8M12 4l-8 8" }) }), Be = le(null);
 function Oe(t) {
   if (!t || typeof window > "u") return {};
   try {
@@ -62,11 +62,11 @@ function wa({
       } catch {
       }
   }, [h, d, s]);
-  const k = j((y) => i(y), []), g = j((y) => l(y), []), $ = K(
+  const k = j((y) => i(y), []), g = j((y) => l(y), []), N = K(
     () => ({ theme: h, resolvedTheme: w, setTheme: k, density: d, setDensity: g }),
     [h, w, k, d, g]
   );
-  return /* @__PURE__ */ e(Be.Provider, { value: $, children: r === "self" ? /* @__PURE__ */ e("div", { ref: f, children: t }) : t });
+  return /* @__PURE__ */ e(Be.Provider, { value: N, children: r === "self" ? /* @__PURE__ */ e("div", { ref: f, children: t }) : t });
 }
 function ka() {
   const t = ie(Be);
@@ -141,7 +141,7 @@ const ze = "wk-Button_root", Ve = "wk-Button_sm", Ke = "wk-Button_md", je = "wk-
   required: et,
   hint: tt,
   error: nt
-}, Ae = le(null), $e = () => ie(Ae);
+}, Ae = le(null), Ne = () => ie(Ae);
 function ba({ label: t, hint: n, error: o, required: a, children: s, className: r }) {
   const c = F(), i = `${c}-input`, d = `${c}-hint`, l = `${c}-error`, p = !!o, v = [o ? l : null, n ? d : null].filter(Boolean).join(" ") || void 0;
   return /* @__PURE__ */ e(Ae.Provider, { value: { inputId: i, describedBy: v, invalid: p }, children: /* @__PURE__ */ m("div", { className: u(Z.root, r), children: [
@@ -176,7 +176,7 @@ const ot = "wk-Input_root", st = "wk-Input_mono", at = "wk-Input_shell", rt = "w
   "aria-describedby": d,
   ...l
 }, p) {
-  const v = $e(), _ = o ?? (v == null ? void 0 : v.invalid) ?? !1, f = /* @__PURE__ */ e(
+  const v = Ne(), _ = o ?? (v == null ? void 0 : v.invalid) ?? !1, f = /* @__PURE__ */ e(
     "input",
     {
       ref: p,
@@ -199,7 +199,7 @@ const ot = "wk-Input_root", st = "wk-Input_mono", at = "wk-Input_shell", rt = "w
     f,
     r && /* @__PURE__ */ e("span", { className: u(L.slot, L.end), children: r })
   ] });
-}), ht = "wk-Select_trigger", wt = "wk-Select_sm", kt = "wk-Select_md", ft = "wk-Select_lg", bt = "wk-Select_icon", _t = "wk-Select_content", vt = "wk-Select_viewport", gt = "wk-Select_item", yt = "wk-Select_itemIndicator", Nt = "wk-Select_label", $t = "wk-Select_separator", M = {
+}), ht = "wk-Select_trigger", wt = "wk-Select_sm", kt = "wk-Select_md", ft = "wk-Select_lg", bt = "wk-Select_icon", _t = "wk-Select_content", vt = "wk-Select_viewport", gt = "wk-Select_item", yt = "wk-Select_itemIndicator", $t = "wk-Select_label", Nt = "wk-Select_separator", M = {
   trigger: ht,
   sm: wt,
   md: kt,
@@ -209,8 +209,8 @@ const ot = "wk-Input_root", st = "wk-Input_mono", at = "wk-Input_shell", rt = "w
   viewport: vt,
   item: gt,
   itemIndicator: yt,
-  label: Nt,
-  separator: $t
+  label: $t,
+  separator: Nt
 };
 function _a({
   placeholder: t,
@@ -221,7 +221,7 @@ function _a({
   "aria-label": r,
   ...c
 }) {
-  const i = $e();
+  const i = Ne();
   return /* @__PURE__ */ m(T.Root, { ...c, children: [
     /* @__PURE__ */ m(
       T.Trigger,
@@ -244,7 +244,7 @@ const va = B(
   function({ className: n, children: o, ...a }, s) {
     return /* @__PURE__ */ m(T.Item, { ref: s, className: u(M.item, n), ...a, children: [
       /* @__PURE__ */ e(T.ItemText, { children: o }),
-      /* @__PURE__ */ e(T.ItemIndicator, { className: M.itemIndicator, children: /* @__PURE__ */ e(Ne, {}) })
+      /* @__PURE__ */ e(T.ItemIndicator, { className: M.itemIndicator, children: /* @__PURE__ */ e($e, {}) })
     ] });
   }
 );
@@ -262,7 +262,7 @@ const Ct = "wk-Switch_wrapper", St = "wk-Switch_root", Tt = "wk-Switch_thumb", x
   root: St,
   thumb: Tt,
   label: xt
-}, Na = B(function({ label: n, className: o, id: a, ...s }, r) {
+}, $a = B(function({ label: n, className: o, id: a, ...s }, r) {
   const c = F(), i = a ?? c, d = /* @__PURE__ */ e(Ce.Root, { ref: r, id: i, className: u(me.root, o), ...s, children: /* @__PURE__ */ e(Ce.Thumb, { className: me.thumb }) });
   return n ? /* @__PURE__ */ m("span", { className: me.wrapper, children: [
     d,
@@ -275,7 +275,7 @@ const Ct = "wk-Switch_wrapper", St = "wk-Switch_root", Tt = "wk-Switch_thumb", x
   dash: Bt,
   label: At
 }, Lt = B(function({ label: n, className: o, id: a, ...s }, r) {
-  const c = F(), i = a ?? c, d = /* @__PURE__ */ e(Se.Root, { ref: r, id: i, className: u(ee.root, o), ...s, children: /* @__PURE__ */ e(Se.Indicator, { className: ee.indicator, children: s.checked === "indeterminate" ? /* @__PURE__ */ e("span", { className: ee.dash }) : /* @__PURE__ */ e(Ne, {}) }) });
+  const c = F(), i = a ?? c, d = /* @__PURE__ */ e(Se.Root, { ref: r, id: i, className: u(ee.root, o), ...s, children: /* @__PURE__ */ e(Se.Indicator, { className: ee.indicator, children: s.checked === "indeterminate" ? /* @__PURE__ */ e("span", { className: ee.dash }) : /* @__PURE__ */ e($e, {}) }) });
   return n ? /* @__PURE__ */ m("span", { className: ee.wrapper, children: [
     d,
     /* @__PURE__ */ e("label", { className: ee.label, htmlFor: i, children: n })
@@ -309,7 +309,7 @@ const Yt = "wk-Dialog_overlay", Xt = "wk-Dialog_content", Qt = "wk-Dialog_header
   close: tn,
   footer: nn
 };
-function $a({
+function Na({
   title: t,
   titleHidden: n = !1,
   description: o,
@@ -477,12 +477,12 @@ function Fa() {
   if (!t) throw new Error("useToast must be used inside <ToastProvider>");
   return t;
 }
-const yn = "wk-Textarea_root", Nn = "wk-Textarea_mono", $n = "wk-Textarea_noResize", ke = {
+const yn = "wk-Textarea_root", $n = "wk-Textarea_mono", Nn = "wk-Textarea_noResize", ke = {
   root: yn,
-  mono: Nn,
-  noResize: $n
+  mono: $n,
+  noResize: Nn
 }, Ra = B(function({ invalid: n, mono: o = !1, resizable: a = !0, className: s, id: r, rows: c = 4, ...i }, d) {
-  const l = $e(), p = n ?? (l == null ? void 0 : l.invalid) ?? !1;
+  const l = Ne(), p = n ?? (l == null ? void 0 : l.invalid) ?? !1;
   return /* @__PURE__ */ e(
     "textarea",
     {
@@ -516,9 +516,9 @@ function Ha({
   onBlur: d,
   ...l
 }) {
-  const p = F(), [v, _] = A(!1), [f, h] = A(-1), w = q(null), k = K(() => v ? o(t) : [], [v, o, t]), g = v && (k.length > 0 || !!s), $ = f >= 0 && k[f] ? `${p}-${f}` : void 0, y = (b) => {
-    const N = k[b];
-    N && (n(Bn(N)), _(!1), h(-1));
+  const p = F(), [v, _] = A(!1), [f, h] = A(-1), w = q(null), k = K(() => v ? o(t) : [], [v, o, t]), g = v && (k.length > 0 || !!s), N = f >= 0 && k[f] ? `${p}-${f}` : void 0, y = (b) => {
+    const $ = k[b];
+    $ && (n(Bn($)), _(!1), h(-1));
   };
   return /* @__PURE__ */ m("div", { className: z.wrap, children: [
     /* @__PURE__ */ e(
@@ -527,7 +527,7 @@ function Ha({
         role: "combobox",
         "aria-expanded": g,
         "aria-controls": g ? p : void 0,
-        "aria-activedescendant": $,
+        "aria-activedescendant": N,
         "aria-autocomplete": "list",
         autoComplete: "off",
         value: t,
@@ -541,29 +541,29 @@ function Ha({
           w.current = setTimeout(() => _(!1), 120), d == null || d(b);
         },
         onKeyDown: (b) => {
-          i == null || i(b), !b.defaultPrevented && (b.key === "ArrowDown" && k.length ? (b.preventDefault(), _(!0), h((N) => (N + 1) % k.length)) : b.key === "ArrowUp" && k.length ? (b.preventDefault(), h((N) => N <= 0 ? k.length - 1 : N - 1)) : b.key === "Enter" ? f >= 0 ? (b.preventDefault(), y(f)) : a == null || a() : b.key === "Tab" && f >= 0 ? (b.preventDefault(), y(f)) : b.key === "Escape" && g && (b.preventDefault(), _(!1), h(-1)));
+          i == null || i(b), !b.defaultPrevented && (b.key === "ArrowDown" && k.length ? (b.preventDefault(), _(!0), h(($) => ($ + 1) % k.length)) : b.key === "ArrowUp" && k.length ? (b.preventDefault(), h(($) => $ <= 0 ? k.length - 1 : $ - 1)) : b.key === "Enter" ? f >= 0 ? (b.preventDefault(), y(f)) : a == null || a() : b.key === "Tab" && f >= 0 ? (b.preventDefault(), y(f)) : b.key === "Escape" && g && (b.preventDefault(), _(!1), h(-1)));
         },
         ...l
       }
     ),
-    g && /* @__PURE__ */ e("ul", { className: z.list, id: p, role: "listbox", children: k.length === 0 ? /* @__PURE__ */ e("li", { className: z.empty, children: s }) : k.map((b, N) => /* @__PURE__ */ m(
+    g && /* @__PURE__ */ e("ul", { className: z.list, id: p, role: "listbox", children: k.length === 0 ? /* @__PURE__ */ e("li", { className: z.empty, children: s }) : k.map((b, $) => /* @__PURE__ */ m(
       "li",
       {
-        id: `${p}-${N}`,
+        id: `${p}-${$}`,
         role: "option",
-        "aria-selected": N === f,
-        "data-active": N === f,
+        "aria-selected": $ === f,
+        "data-active": $ === f,
         className: z.option,
-        onMouseEnter: () => h(N),
+        onMouseEnter: () => h($),
         onMouseDown: (J) => {
-          J.preventDefault(), w.current && clearTimeout(w.current), y(N);
+          J.preventDefault(), w.current && clearTimeout(w.current), y($);
         },
         children: [
           /* @__PURE__ */ e("span", { className: u(z.label, r && z.mono), children: b.label }),
           b.hint && /* @__PURE__ */ e("span", { className: z.hint, children: b.hint })
         ]
       },
-      `${b.label}-${N}`
+      `${b.label}-${$}`
     )) })
   ] });
 }
@@ -670,10 +670,18 @@ const Un = "wk-EmptyState_root", Gn = "wk-EmptyState_icon", Yn = "wk-EmptyState_
   description: Xn,
   actions: Qn
 };
-function Va({ icon: t, title: n, description: o, action: a, className: s }) {
-  return /* @__PURE__ */ m("div", { className: u(te.root, s), children: [
+function Va({
+  icon: t,
+  title: n,
+  description: o,
+  action: a,
+  headingLevel: s = 2,
+  className: r
+}) {
+  const c = `h${s}`;
+  return /* @__PURE__ */ m("div", { className: u(te.root, r), children: [
     t && /* @__PURE__ */ e("span", { className: te.icon, "aria-hidden": "true", children: t }),
-    /* @__PURE__ */ e("p", { className: te.title, children: n }),
+    /* @__PURE__ */ e(c, { className: te.title, children: n }),
     o && /* @__PURE__ */ e("p", { className: te.description, children: o }),
     a && /* @__PURE__ */ e("div", { className: te.actions, children: a })
   ] });
@@ -718,8 +726,8 @@ function qa({
 }) {
   const l = q(null), [p, v] = A(!1), _ = n === "horizontal", f = j(
     (w) => {
-      var $;
-      const k = ($ = l.current) == null ? void 0 : $.getBoundingClientRect(), g = k ? (_ ? k.width : k.height) - s : r;
+      var N;
+      const k = (N = l.current) == null ? void 0 : N.getBoundingClientRect(), g = k ? (_ ? k.width : k.height) - s : r;
       return Math.max(s, Math.min(w, Math.min(r, g)));
     },
     [s, r, _]
@@ -814,10 +822,10 @@ function Ga({ children: t, onActivate: n, onToggle: o, className: a, ...s }) {
     var h, w;
     i(f), (w = (h = r.current) == null ? void 0 : h.querySelector(`[data-tree-id="${CSS.escape(f)}"]`)) == null || w.focus();
   }, v = (f) => {
-    var $;
+    var N;
     const h = d.current;
     if (!h.length) return;
-    const w = c ? h.indexOf(c) : -1, k = c ? ($ = r.current) == null ? void 0 : $.querySelector(`[data-tree-id="${CSS.escape(c)}"]`) : null, g = k == null ? void 0 : k.getAttribute("aria-expanded");
+    const w = c ? h.indexOf(c) : -1, k = c ? (N = r.current) == null ? void 0 : N.querySelector(`[data-tree-id="${CSS.escape(c)}"]`) : null, g = k == null ? void 0 : k.getAttribute("aria-expanded");
     switch (f.key) {
       case "ArrowDown":
         f.preventDefault(), p(h[Math.min(w + 1, h.length - 1)]);
@@ -914,11 +922,11 @@ function Ya({
     }
   );
 }
-const go = "wk-CommandPalette_overlay", yo = "wk-CommandPalette_content", No = "wk-CommandPalette_search", $o = "wk-CommandPalette_searchIcon", Co = "wk-CommandPalette_input", So = "wk-CommandPalette_list", To = "wk-CommandPalette_group", xo = "wk-CommandPalette_heading", Io = "wk-CommandPalette_item", Do = "wk-CommandPalette_itemIcon", Po = "wk-CommandPalette_itemLabel", Bo = "wk-CommandPalette_itemHint", Ao = "wk-CommandPalette_empty", Lo = "wk-CommandPalette_footer", S = {
+const go = "wk-CommandPalette_overlay", yo = "wk-CommandPalette_content", $o = "wk-CommandPalette_search", No = "wk-CommandPalette_searchIcon", Co = "wk-CommandPalette_input", So = "wk-CommandPalette_list", To = "wk-CommandPalette_group", xo = "wk-CommandPalette_heading", Io = "wk-CommandPalette_item", Do = "wk-CommandPalette_itemIcon", Po = "wk-CommandPalette_itemLabel", Bo = "wk-CommandPalette_itemHint", Ao = "wk-CommandPalette_empty", Lo = "wk-CommandPalette_footer", S = {
   overlay: go,
   content: yo,
-  search: No,
-  searchIcon: $o,
+  search: $o,
+  searchIcon: No,
   input: Co,
   list: So,
   group: To,
@@ -942,20 +950,20 @@ function Xa({
   className: d
 }) {
   const l = F(), [p, v] = A(0), [_, f] = A([]), h = q(/* @__PURE__ */ new Map()), w = K(
-    () => (b, N) => {
-      h.current.set(b, N);
+    () => (b, $) => {
+      h.current.set(b, $);
     },
     []
   ), k = K(
-    () => (b) => (f((N) => N.includes(b) ? N : [...N, b]), () => {
-      f((N) => N.filter((J) => J !== b)), h.current.delete(b);
+    () => (b) => (f(($) => $.includes(b) ? $ : [...$, b]), () => {
+      f(($) => $.filter((J) => J !== b)), h.current.delete(b);
     }),
     []
   );
   ae(() => v(0), [o]);
-  const g = _.length, $ = _[p] ?? _[0] ?? null, y = K(
-    () => ({ activeId: $, register: w, attach: k, listId: l }),
-    [$, w, k, l]
+  const g = _.length, N = _[p] ?? _[0] ?? null, y = K(
+    () => ({ activeId: N, register: w, attach: k, listId: l }),
+    [N, w, k, l]
   );
   return /* @__PURE__ */ e(C.Root, { open: t, onOpenChange: n, children: /* @__PURE__ */ m(C.Portal, { children: [
     /* @__PURE__ */ e(C.Overlay, { className: S.overlay }),
@@ -974,17 +982,17 @@ function Xa({
               role: "combobox",
               "aria-expanded": !0,
               "aria-controls": l,
-              "aria-activedescendant": $ ? `${l}-${$}` : void 0,
+              "aria-activedescendant": N ? `${l}-${N}` : void 0,
               "aria-autocomplete": "list",
               autoComplete: "off",
               autoFocus: !0,
               onKeyDown: (b) => {
                 if (b.key === "ArrowDown" && g)
-                  b.preventDefault(), v((N) => (N + 1) % g);
+                  b.preventDefault(), v(($) => ($ + 1) % g);
                 else if (b.key === "ArrowUp" && g)
-                  b.preventDefault(), v((N) => N <= 0 ? g - 1 : N - 1);
+                  b.preventDefault(), v(($) => $ <= 0 ? g - 1 : $ - 1);
                 else if (b.key === "Enter") {
-                  const N = _[p] ?? _[0], J = N ? h.current.get(N) : void 0;
+                  const $ = _[p] ?? _[0], J = $ ? h.current.get($) : void 0;
                   if (!J) return;
                   b.preventDefault(), J();
                 }
@@ -1059,7 +1067,7 @@ function er({
 }) {
   const _ = F();
   let f = 0;
-  const h = () => (c == null ? void 0 : c()) ?? `${_}-${t.length}-${f++}`, w = (k, g) => n(t.map(($) => $.id === k ? { ...$, ...g } : $));
+  const h = () => (c == null ? void 0 : c()) ?? `${_}-${t.length}-${f++}`, w = (k, g) => n(t.map((N) => N.id === k ? { ...N, ...g } : N));
   return /* @__PURE__ */ m("div", { className: u(E.root, v), children: [
     /* @__PURE__ */ m("div", { className: E.head, "aria-hidden": "true", children: [
       /* @__PURE__ */ e("span", { children: i ? "" : null }),
@@ -1069,12 +1077,12 @@ function er({
     ] }),
     t.length === 0 && /* @__PURE__ */ e("p", { className: E.empty, children: l }),
     t.map((k, g) => {
-      const $ = k.enabled ?? !0;
-      return /* @__PURE__ */ m("div", { className: E.row, "data-disabled": !$, children: [
+      const N = k.enabled ?? !0;
+      return /* @__PURE__ */ m("div", { className: E.row, "data-disabled": !N, children: [
         /* @__PURE__ */ e("span", { className: E.cell, children: i && /* @__PURE__ */ e(
           Lt,
           {
-            checked: $,
+            checked: N,
             onCheckedChange: (y) => w(k.id, { enabled: y === !0 }),
             "aria-label": `Enable ${k.key || `row ${g + 1}`}`
           }
@@ -1277,9 +1285,9 @@ function cr({
     }
   ) : /* @__PURE__ */ e("div", { className: g, "aria-labelledby": h, ..._, children: k });
 }
-const Ns = "wk-Stepper_root", $s = "wk-Stepper_horizontal", Cs = "wk-Stepper_vertical", Ss = "wk-Stepper_step", Ts = "wk-Stepper_complete", xs = "wk-Stepper_current", Is = "wk-Stepper_marker", Ds = "wk-Stepper_text", Ps = "wk-Stepper_label", Bs = "wk-Stepper_description", O = {
-  root: Ns,
-  horizontal: $s,
+const $s = "wk-Stepper_root", Ns = "wk-Stepper_horizontal", Cs = "wk-Stepper_vertical", Ss = "wk-Stepper_step", Ts = "wk-Stepper_complete", xs = "wk-Stepper_current", Is = "wk-Stepper_marker", Ds = "wk-Stepper_text", Ps = "wk-Stepper_label", Bs = "wk-Stepper_description", O = {
+  root: $s,
+  horizontal: Ns,
   vertical: Cs,
   step: Ss,
   complete: Ts,
@@ -1304,7 +1312,7 @@ function ir({
         className: u(O.step, O[l]),
         "aria-current": l === "current" ? "step" : void 0,
         children: [
-          /* @__PURE__ */ e("span", { className: O.marker, "aria-hidden": "true", children: l === "complete" ? /* @__PURE__ */ e(Ne, {}) : c + 1 }),
+          /* @__PURE__ */ e("span", { className: O.marker, "aria-hidden": "true", children: l === "complete" ? /* @__PURE__ */ e($e, {}) : c + 1 }),
           /* @__PURE__ */ m("span", { className: O.text, children: [
             /* @__PURE__ */ m("span", { className: O.label, children: [
               i,
@@ -1547,7 +1555,7 @@ export {
   yr as Breadcrumbs,
   Qe as Button,
   cr as Card,
-  Ne as CheckIcon,
+  $e as CheckIcon,
   Lt as Checkbox,
   Pe as ChevronDownIcon,
   he as CloseIcon,
@@ -1558,7 +1566,7 @@ export {
   Qa as CommandGroup,
   Wa as CommandItem,
   Xa as CommandPalette,
-  $a as Dialog,
+  Na as Dialog,
   Ca as DialogClose,
   Va as EmptyState,
   ba as Field,
@@ -1588,7 +1596,7 @@ export {
   Ka as Spinner,
   qa as SplitPane,
   ir as Stepper,
-  Na as Switch,
+  $a as Switch,
   lr as Table,
   Ba as Tabs,
   Ea as TabsContent,
@@ -1610,7 +1618,7 @@ export {
   Ya as TreeItem,
   de as VisuallyHidden,
   u as cn,
-  $e as useField,
+  Ne as useField,
   ka as useTheme,
   Fa as useToast
 };
