@@ -1,6 +1,7 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
 import {
-  createContext, useContext, useEffect, useId, useMemo, useRef, useState,
+  createContext,
+  useLayoutEffect, useContext, useEffect, useId, useMemo, useRef, useState,
   type ReactNode,
 } from 'react';
 import { cn } from '../../utils';
@@ -9,7 +10,18 @@ import styles from './CommandPalette.module.css';
 
 interface PaletteContextValue {
   activeId: string | null;
+  /** Called during an item's render so its handler stays current. */
   register: (id: string, run: () => void) => void;
+  /**
+   * Called from an item's LAYOUT EFFECT to join the ordered list; returns its
+   * own cleanup.
+   *
+   * This half has to exist. The items render inside a Radix Portal, which
+   * mounts in a SEPARATE commit — so a ref the parent fills during render and
+   * reads in its own effect is still empty, and the parent never re-renders
+   * to look again. Only a state update from the child brings it back.
+   */
+  attach: (id: string) => () => void;
   listId: string;
 }
 const PaletteContext = createContext<PaletteContextValue | null>(null);
@@ -42,12 +54,26 @@ export function CommandPalette({
 }: CommandPaletteProps) {
   const listId = useId();
   const [activeIndex, setActiveIndex] = useState(0);
-  const items = useRef<Array<{ id: string; run: () => void }>>([]);
-  items.current = [];
+  // Ordered ids in STATE so a late-mounting item re-renders the palette;
+  // handlers in a ref so each render's closure stays fresh without disturbing
+  // the order.
+  const [ids, setIds] = useState<string[]>([]);
+  const runs = useRef<Map<string, () => void>>(new Map());
 
   const register = useMemo(
     () => (id: string, run: () => void) => {
-      items.current.push({ id, run });
+      runs.current.set(id, run);
+    },
+    [],
+  );
+
+  const attach = useMemo(
+    () => (id: string) => {
+      setIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
+      return () => {
+        setIds((prev) => prev.filter((x) => x !== id));
+        runs.current.delete(id);
+      };
     },
     [],
   );
@@ -56,12 +82,12 @@ export function CommandPalette({
   // run the wrong command on Enter.
   useEffect(() => setActiveIndex(0), [query]);
 
-  const count = items.current.length;
-  const active = items.current[activeIndex];
+  const count = ids.length;
+  const activeId = ids[activeIndex] ?? ids[0] ?? null;
 
   const ctx = useMemo<PaletteContextValue>(
-    () => ({ activeId: active?.id ?? null, register, listId }),
-    [active?.id, register, listId],
+    () => ({ activeId, register, attach, listId }),
+    [activeId, register, attach, listId],
   );
 
   return (
@@ -83,7 +109,7 @@ export function CommandPalette({
                 role="combobox"
                 aria-expanded
                 aria-controls={listId}
-                aria-activedescendant={active ? `${listId}-${active.id}` : undefined}
+                aria-activedescendant={activeId ? `${listId}-${activeId}` : undefined}
                 aria-autocomplete="list"
                 autoComplete="off"
                 // biome-ignore lint: the palette is explicitly a focus-on-open surface
@@ -95,9 +121,12 @@ export function CommandPalette({
                   } else if (e.key === 'ArrowUp' && count) {
                     e.preventDefault();
                     setActiveIndex((i) => (i <= 0 ? count - 1 : i - 1));
-                  } else if (e.key === 'Enter' && active) {
+                  } else if (e.key === 'Enter') {
+                    const id = ids[activeIndex] ?? ids[0];
+                    const run = id ? runs.current.get(id) : undefined;
+                    if (!run) return;
                     e.preventDefault();
-                    active.run();
+                    run();
                   }
                 }}
               />
@@ -137,6 +166,11 @@ export function CommandItem({ id, children, onSelect, icon, hint }: CommandItemP
   const ctx = useContext(PaletteContext);
   if (!ctx) throw new Error('CommandItem must be used inside <CommandPalette>');
   ctx.register(id, onSelect);
+  // Joining the list is an EFFECT, not a render-time mutation: the parent
+  // needs a state update to learn this item exists, and a ref write cannot
+  // deliver one across the portal boundary.
+  const { attach } = ctx;
+  useLayoutEffect(() => attach(id), [attach, id]);
   const active = ctx.activeId === id;
 
   return (
