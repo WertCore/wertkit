@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Slot } from '@radix-ui/react-slot';
+import { Slot, Slottable } from '@radix-ui/react-slot';
 import { cn } from '../../utils';
 import styles from './NavList.module.css';
 
@@ -77,7 +77,20 @@ export function NavItem({
             {icon}
           </span>
         )}
-        <span className={styles.label}>{children}</span>
+        {/*
+          Same `Slottable` rule as Button: Slot counts `undefined`/`false`
+          children, so the optional icon and badge around this made
+          `<NavItem asChild>` throw regardless of whether either was passed.
+          When slotting, the consumer's own element becomes the control and
+          carries the icon and badge as its children — so the label wrapper
+          would have nested their anchor inside a span rather than replacing
+          the button, which is the thing asChild exists to do.
+        */}
+        {asChild ? (
+          <Slottable>{children}</Slottable>
+        ) : (
+          <span className={styles.label}>{children}</span>
+        )}
         {badge && <span className={styles.badge}>{badge}</span>}
       </Control>
     </li>

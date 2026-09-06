@@ -12,7 +12,8 @@
     "tokens": "pnpm -F @wertkit/tokens build",
     "build": "pnpm -F @wertkit/tokens build && pnpm -F @wertkit/ui build",
     "typecheck": "pnpm -r typecheck",
-    "preview": "pnpm -F @wertkit/preview dev"
+    "preview": "pnpm -F @wertkit/preview dev",
+    "test": "pnpm -r test"
   },
   "devDependencies": {
     "typescript": "^5.6.0"
