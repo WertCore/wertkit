@@ -23,7 +23,18 @@ export default defineConfig({
     },
     cssFileName: 'wertkit-ui',
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      // Radix stays EXTERNAL. Inlining it shipped a second copy of every
+      // primitive: one inside this bundle, one in the consumer's node_modules
+      // (they are declared dependencies because the public .d.ts files import
+      // Radix types). Two copies on disk is only wasteful; two *executing*
+      // copies in an app that also uses Radix is a correctness bug, because
+      // Radix coordinates open/focus state through React context and context
+      // identity is per-copy. Prefix-matched so deep imports are caught too.
+      external: (id: string) =>
+        id === 'react' ||
+        id === 'react-dom' ||
+        id === 'react/jsx-runtime' ||
+        id.startsWith('@radix-ui/'),
     },
     sourcemap: true,
   },

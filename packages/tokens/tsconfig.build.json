@@ -1,0 +1,26 @@
+{
+  // Emit config, separate from tsconfig.json (which is `noEmit` for typecheck).
+  //
+  // dist/tokens.ts was the package's own `main`, which meant every consumer got
+  // raw TypeScript: Node refuses to strip types under node_modules
+  // (ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING), so `import ... from
+  // "@wertkit/tokens"` failed outright. tsc emits the .js and .d.ts pair from
+  // that same generated file, so the values and their literal types cannot
+  // drift apart the way a hand-written second emitter would.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    // Only legal alongside noEmit/emitDeclarationOnly, and the generated file
+    // has no imports at all, so nothing needs it.
+    "allowImportingTsExtensions": false,
+    "declaration": true,
+    "declarationMap": false,
+    "rootDir": "dist",
+    "outDir": "dist"
+  },
+  // `files`, not `include`: tsc implicitly excludes `outDir` from `include`
+  // globs, and the generator writes its source into that same dist/ directory,
+  // so an include-based config resolves to zero inputs (TS18003). `files`
+  // entries are never filtered by that exclusion.
+  "files": ["dist/tokens.ts"]
+}
