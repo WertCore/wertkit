@@ -16,13 +16,13 @@
       "import": "./dist/index.js"
     },
     "./styles.css": "./dist/ui.css",
-    "./tokens.css": "../tokens/dist/tokens.css"
+    "./tokens.css": "./dist/tokens.css"
   },
   "sideEffects": [
     "**/*.css"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && node scripts/copy-tokens.mjs",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
