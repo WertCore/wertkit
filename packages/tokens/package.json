@@ -1,20 +1,24 @@
 {
   "name": "@wertkit/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Platform-neutral design tokens. Source of truth for every wertkit target.",
   "license": "UNLICENSED",
   "type": "module",
   "files": ["dist", "src"],
-  "main": "./dist/tokens.ts",
-  "types": "./dist/tokens.ts",
+  "main": "./dist/tokens.js",
+  "types": "./dist/tokens.d.ts",
   "exports": {
-    ".": "./dist/tokens.ts",
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js"
+    },
     "./css": "./dist/tokens.css",
     "./rust": "./dist/tokens.rs",
+    "./ts": "./dist/tokens.ts",
     "./src/*": "./src/*"
   },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit"
   }
 }
