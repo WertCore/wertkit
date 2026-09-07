@@ -4,6 +4,7 @@ import {
   useLayoutEffect, useContext, useEffect, useId, useMemo, useRef, useState,
   type ReactNode,
 } from 'react';
+import { SearchIcon } from '../../icons';
 import { cn } from '../../utils';
 import { VisuallyHidden } from '../Semantic/VisuallyHidden';
 import styles from './CommandPalette.module.css';
@@ -37,6 +38,14 @@ export interface CommandPaletteProps {
   title?: string;
   footer?: ReactNode;
   className?: string;
+  /**
+   * Replaces the leading search glyph. Pass an app's own icon so the palette
+   * matches the icons its CommandItems use; omit it for wertkit's.
+   *
+   * Sized by the slot's font-size (wertkit icons are `1em`), so an icon that
+   * hard-codes a pixel size will not follow the row.
+   */
+  searchIcon?: ReactNode;
 }
 
 /**
@@ -50,7 +59,7 @@ export interface CommandPaletteProps {
 export function CommandPalette({
   open, onOpenChange, query, onQueryChange, children,
   placeholder = 'Type a command or search…',
-  title = 'Command palette', footer, className,
+  title = 'Command palette', footer, className, searchIcon,
 }: CommandPaletteProps) {
   const listId = useId();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -100,7 +109,9 @@ export function CommandPalette({
           </RadixDialog.Title>
           <PaletteContext.Provider value={ctx}>
             <div className={styles.search}>
-              <span className={styles.searchIcon} aria-hidden="true">⌕</span>
+              <span className={styles.searchIcon} aria-hidden="true">
+                {searchIcon ?? <SearchIcon />}
+              </span>
               <input
                 className={styles.input}
                 value={query}

@@ -10,6 +10,14 @@ export interface CommandPaletteProps {
     title?: string;
     footer?: ReactNode;
     className?: string;
+    /**
+     * Replaces the leading search glyph. Pass an app's own icon so the palette
+     * matches the icons its CommandItems use; omit it for wertkit's.
+     *
+     * Sized by the slot's font-size (wertkit icons are `1em`), so an icon that
+     * hard-codes a pixel size will not follow the row.
+     */
+    searchIcon?: ReactNode;
 }
 /**
  * The Cmd+K surface: overlay, filter input, and a keyboard-driven listbox.
@@ -19,7 +27,7 @@ export interface CommandPaletteProps {
  * aria-activedescendant (combobox pattern), so arrows move the highlight
  * without focus ever leaving the field.
  */
-export declare function CommandPalette({ open, onOpenChange, query, onQueryChange, children, placeholder, title, footer, className, }: CommandPaletteProps): import("react").JSX.Element;
+export declare function CommandPalette({ open, onOpenChange, query, onQueryChange, children, placeholder, title, footer, className, searchIcon, }: CommandPaletteProps): import("react").JSX.Element;
 export declare function CommandGroup({ heading, children }: {
     heading?: ReactNode;
     children: ReactNode;
