@@ -68,11 +68,57 @@ export const Tr = ({ selected, className, ...rest }: TrProps) => (
 
 export interface ThProps extends ThHTMLAttributes<HTMLTableCellElement> {
   numeric?: boolean;
+  /**
+   * Makes the header a sort control: the label becomes a button and the cell
+   * carries aria-sort, which is how a screen reader learns the table is sorted
+   * and by which column. A clickable <th> with neither is a control only a
+   * mouse user can find.
+   */
+  sortable?: boolean;
+  /** This column's current sort, or null when the table is sorted by another. */
+  sortDirection?: 'asc' | 'desc' | null;
+  /**
+   * Called with the direction the column should take next — ascending unless
+   * it is already ascending. Every table would otherwise write the same flip.
+   */
+  onSort?: (next: 'asc' | 'desc') => void;
 }
 /** scope defaults to "col" - the association screen readers and parsers rely on. */
-export const Th = ({ numeric, scope = 'col', className, ...rest }: ThProps) => (
-  <th scope={scope} className={cn(styles.th, numeric && styles.numeric, className)} {...rest} />
-);
+export const Th = ({
+  numeric, sortable, sortDirection, onSort, scope = 'col', className, children, ...rest
+}: ThProps) => {
+  if (!sortable) {
+    return (
+      <th scope={scope} className={cn(styles.th, numeric && styles.numeric, className)} {...rest}>
+        {children}
+      </th>
+    );
+  }
+  const dir = sortDirection ?? null;
+  return (
+    <th
+      scope={scope}
+      // "none" rather than omitted: an unsorted sortable column still needs to
+      // announce that it CAN sort.
+      aria-sort={dir === 'asc' ? 'ascending' : dir === 'desc' ? 'descending' : 'none'}
+      className={cn(styles.th, numeric && styles.numeric, className)}
+      {...rest}
+    >
+      <button
+        type="button"
+        className={styles.sortButton}
+        onClick={() => onSort?.(dir === 'asc' ? 'desc' : 'asc')}
+      >
+        {children}
+        {/* Decorative: aria-sort already carries the state, so announcing the
+            glyph too would say it twice. */}
+        <span aria-hidden="true" className={styles.sortIndicator} data-direction={dir ?? 'none'}>
+          {dir === 'asc' ? '\u25b2' : dir === 'desc' ? '\u25bc' : '\u2195'}
+        </span>
+      </button>
+    </th>
+  );
+};
 
 export interface TdProps extends TdHTMLAttributes<HTMLTableCellElement> {
   numeric?: boolean;

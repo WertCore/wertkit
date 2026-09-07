@@ -1,0 +1,72 @@
+@layer wertkit.components {
+  .root {
+    font-family: var(--wk-font-sans);
+    font-size: var(--wk-text-sm);
+    min-width: 0;
+  }
+  .list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--wk-space-1);
+    /* The trail is a list for structure, not for bullets. */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    gap: var(--wk-space-1);
+    min-width: 0;
+  }
+  .separator {
+    color: var(--wk-fg-muted);
+    /* Never the thing that shrinks when the trail runs out of room. */
+    flex: none;
+    user-select: none;
+  }
+  .link {
+    color: var(--wk-fg-muted);
+    text-decoration: none;
+    border-radius: var(--wk-radius-sm);
+    padding: 0 var(--wk-space-1);
+    /* A long name truncates rather than pushing the tail — which is the part
+       that says where you actually are — off the end. */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .link:hover {
+    color: var(--wk-fg);
+    text-decoration: underline;
+  }
+  .link:focus-visible,
+  .ellipsis:focus-visible {
+    outline: var(--wk-focus-width) solid var(--wk-focus-ring);
+    outline-offset: 1px;
+  }
+  .current {
+    color: var(--wk-fg);
+    font-weight: var(--wk-weight-medium);
+    padding: 0 var(--wk-space-1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ellipsis {
+    font: inherit;
+    color: var(--wk-fg-muted);
+    background: none;
+    border: 0;
+    border-radius: var(--wk-radius-sm);
+    padding: 0 var(--wk-space-1);
+    cursor: pointer;
+    line-height: 1;
+  }
+  .ellipsis:hover {
+    color: var(--wk-fg);
+    background: var(--wk-bg-subtle);
+  }
+}

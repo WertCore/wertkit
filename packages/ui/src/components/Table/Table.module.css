@@ -37,6 +37,33 @@
     border-bottom: var(--wk-border-thin) solid var(--wk-border);
     vertical-align: top;
   }
+  /* The whole header cell is the hit target, so the control is as big as it
+     looks rather than just the few pixels of the label. */
+  .sortButton {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wk-space-1);
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: inherit;
+  }
+  .sortButton:hover { color: var(--wk-fg); }
+  .sortButton:focus-visible {
+    outline: var(--wk-focus-width) solid var(--wk-focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--wk-radius-sm);
+  }
+  .sortIndicator { font-size: 0.75em; line-height: 1; flex: none; }
+  /* The idle glyph is a hint, not a state — it recedes until you hover or
+     the column is actually sorted. */
+  .sortIndicator[data-direction='none'] { opacity: 0.35; }
+  .sortButton:hover .sortIndicator[data-direction='none'] { opacity: 0.7; }
   .numeric { text-align: end; font-family: var(--wk-font-mono); font-variant-numeric: tabular-nums; }
   .captionHidden {
     position: absolute;

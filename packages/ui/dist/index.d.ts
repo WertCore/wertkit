@@ -62,6 +62,8 @@ export { Card } from './components/Card/Card';
 export type { CardProps, CardVariant, CardPadding } from './components/Card/Card';
 export { Stepper } from './components/Stepper/Stepper';
 export type { StepperProps, Step } from './components/Stepper/Stepper';
+export { Breadcrumb, BreadcrumbItem } from './components/Breadcrumb/Breadcrumb';
+export type { BreadcrumbProps, BreadcrumbItemProps } from './components/Breadcrumb/Breadcrumb';
 export { Table, Thead, Tbody, Tr, Th, Td } from './components/Table/Table';
 export type { TableProps, TrProps, ThProps, TdProps } from './components/Table/Table';
 export { Badge } from './components/Badge/Badge';

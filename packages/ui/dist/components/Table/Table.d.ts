@@ -29,9 +29,23 @@ export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
 export declare const Tr: ({ selected, className, ...rest }: TrProps) => import("react").JSX.Element;
 export interface ThProps extends ThHTMLAttributes<HTMLTableCellElement> {
     numeric?: boolean;
+    /**
+     * Makes the header a sort control: the label becomes a button and the cell
+     * carries aria-sort, which is how a screen reader learns the table is sorted
+     * and by which column. A clickable <th> with neither is a control only a
+     * mouse user can find.
+     */
+    sortable?: boolean;
+    /** This column's current sort, or null when the table is sorted by another. */
+    sortDirection?: 'asc' | 'desc' | null;
+    /**
+     * Called with the direction the column should take next — ascending unless
+     * it is already ascending. Every table would otherwise write the same flip.
+     */
+    onSort?: (next: 'asc' | 'desc') => void;
 }
 /** scope defaults to "col" - the association screen readers and parsers rely on. */
-export declare const Th: ({ numeric, scope, className, ...rest }: ThProps) => import("react").JSX.Element;
+export declare const Th: ({ numeric, sortable, sortDirection, onSort, scope, className, children, ...rest }: ThProps) => import("react").JSX.Element;
 export interface TdProps extends TdHTMLAttributes<HTMLTableCellElement> {
     numeric?: boolean;
 }
