@@ -3,7 +3,7 @@ import './styles/layers.css';
 import './styles/base.css';
 
 export { cn } from './utils';
-export { CheckIcon, ChevronDownIcon, CloseIcon } from './icons';
+export { CheckIcon, ChevronDownIcon, CloseIcon, SearchIcon } from './icons';
 
 export { ThemeProvider, useTheme } from './components/ThemeProvider/ThemeProvider';
 export type {

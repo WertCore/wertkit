@@ -32,7 +32,15 @@
     padding: var(--wk-space-3) var(--wk-space-4);
     border-bottom: var(--wk-border-thin) solid var(--wk-border);
   }
-  .searchIcon { color: var(--wk-fg-subtle); flex: none; display: inline-flex; }
+  /* font-size, not width/height: wertkit icons are `1em`, so the slot's type
+     size IS the icon size. Pinned to the input's own scale rather than left to
+     inherit - it was inheriting --wk-text-sm (13px) beside 16px text. */
+  .searchIcon {
+    color: var(--wk-fg-subtle);
+    flex: none;
+    display: inline-flex;
+    font-size: var(--wk-text-lg);
+  }
   .input {
     all: unset;
     flex: 1;

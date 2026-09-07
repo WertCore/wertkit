@@ -20,3 +20,11 @@ export const ChevronDownIcon = (p: SVGProps<SVGSVGElement>) => (
 export const CloseIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base(p)}><path d="M4 4l8 8M12 4l-8 8" /></svg>
 );
+// The CommandPalette rendered U+2315 ("⌕", which Unicode actually names
+// TELEPHONE RECORDER) as a text character. It is whatever the user's font
+// decides - thin, vertically off, and absent entirely where the font lacks
+// the codepoint - and it could not inherit the stroke weight of the icons
+// beside it. A path is a path everywhere.
+export const SearchIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base(p)}><circle cx="7" cy="7" r="4.25" /><path d="m10.25 10.25 3.25 3.25" /></svg>
+);

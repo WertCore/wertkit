@@ -1,5 +1,5 @@
 export { cn } from './utils';
-export { CheckIcon, ChevronDownIcon, CloseIcon } from './icons';
+export { CheckIcon, ChevronDownIcon, CloseIcon, SearchIcon } from './icons';
 export { ThemeProvider, useTheme } from './components/ThemeProvider/ThemeProvider';
 export type { ThemeProviderProps, ThemeName, ThemeSetting, BuiltInTheme, Density, } from './components/ThemeProvider/ThemeProvider';
 export { ThemeScript } from './components/ThemeProvider/ThemeScript';
