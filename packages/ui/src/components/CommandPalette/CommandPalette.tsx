@@ -11,6 +11,15 @@ import styles from './CommandPalette.module.css';
 
 interface PaletteContextValue {
   activeId: string | null;
+  /**
+   * Move the highlight to an item, from the POINTER.
+   *
+   * Keyboard and mouse share one highlight rather than having two: with a
+   * separate `:hover` style the palette shows two candidates at once and
+   * Enter runs the one the mouse is not over. Combobox already works this
+   * way; this is the palette catching up.
+   */
+  highlight: (id: string) => void;
   /** Called during an item's render so its handler stays current. */
   register: (id: string, run: () => void) => void;
   /**
@@ -94,9 +103,22 @@ export function CommandPalette({
   const count = ids.length;
   const activeId = ids[activeIndex] ?? ids[0] ?? null;
 
+  const highlight = useMemo(
+    () => (id: string) =>
+      setIds((prev) => {
+        // Reads the CURRENT order inside the updater rather than closing over
+        // `ids`, so a hover cannot be resolved against a stale list while
+        // items are still mounting.
+        const i = prev.indexOf(id);
+        if (i >= 0) setActiveIndex(i);
+        return prev;
+      }),
+    [],
+  );
+
   const ctx = useMemo<PaletteContextValue>(
-    () => ({ activeId, register, attach, listId }),
-    [activeId, register, attach, listId],
+    () => ({ activeId, register, attach, listId, highlight }),
+    [activeId, register, attach, listId, highlight],
   );
 
   return (
@@ -191,6 +213,17 @@ export function CommandItem({ id, children, onSelect, icon, hint }: CommandItemP
       aria-selected={active}
       data-active={active}
       className={styles.item}
+      // Pointer moves the highlight rather than painting a second one, so
+      // what Enter will run is always what is highlighted.
+      //
+      // `mousemove`, not `mouseenter`: arrowing through a scrolling list drags
+      // items under a STATIONARY cursor, and `mouseenter` fires for that —
+      // the highlight would jump back to wherever the mouse happens to rest
+      // on every keypress. A real pointer movement is the only thing that
+      // should take it. The guard keeps the repeat firings free.
+      onMouseMove={() => {
+        if (!active) ctx.highlight(id);
+      }}
       // mousedown, not click: the input must not lose focus first.
       onMouseDown={(e) => {
         e.preventDefault();

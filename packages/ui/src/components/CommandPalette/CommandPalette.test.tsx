@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { CommandItem, CommandPalette } from './CommandPalette';
 
@@ -65,5 +65,66 @@ describe('CommandPalette search icon', () => {
     expect(screen.getByTestId('mine')).toBeTruthy();
     // The default must not render alongside the override.
     expect(slot.querySelector('svg')).toBeNull();
+  });
+});
+
+// ── The pointer moves the highlight (KP/wertkit) ────────────────────────────
+//
+// `CommandItem` had `onMouseDown` and nothing else, and the stylesheet had no
+// `:hover` rule — so moving the mouse across the list did nothing at all. The
+// item under the cursor looked no different from any other, and Enter ran
+// whatever the keyboard had last selected somewhere else entirely.
+//
+// Combobox already followed the pointer; this is the palette catching up, and
+// it shares ONE highlight rather than adding a second hover style — two
+// candidates on screen at once is the bug in a different costume.
+
+describe('pointer and keyboard share one highlight', () => {
+  function threeItems() {
+    return render(
+      <CommandPalette open onOpenChange={() => {}} query="" onQueryChange={() => {}}>
+        <CommandItem id="a" onSelect={() => {}}>Alpha</CommandItem>
+        <CommandItem id="b" onSelect={() => {}}>Beta</CommandItem>
+        <CommandItem id="c" onSelect={() => {}}>Gamma</CommandItem>
+      </CommandPalette>,
+    );
+  }
+  const active = () =>
+    screen.getAllByRole('option').find((o) => o.getAttribute('data-active') === 'true')?.textContent;
+
+  it('starts on the first item', () => {
+    threeItems();
+    expect(active()).toBe('Alpha');
+  });
+
+  it('follows the pointer onto another item', () => {
+    threeItems();
+    fireEvent.mouseMove(screen.getByText('Gamma'));
+    expect(active()).toBe('Gamma');
+  });
+
+  it('marks exactly ONE item at a time', () => {
+    threeItems();
+    fireEvent.mouseMove(screen.getByText('Beta'));
+    const marked = screen
+      .getAllByRole('option')
+      .filter((o) => o.getAttribute('data-active') === 'true');
+    expect(marked).toHaveLength(1);
+  });
+
+  it('keeps aria-selected in step, so a screen reader agrees with the eye', () => {
+    threeItems();
+    fireEvent.mouseMove(screen.getByText('Gamma'));
+    const gamma = screen.getAllByRole('option').find((o) => o.textContent === 'Gamma');
+    expect(gamma?.getAttribute('aria-selected')).toBe('true');
+  });
+
+  it('hands the highlight back to the keyboard afterwards', () => {
+    threeItems();
+    fireEvent.mouseMove(screen.getByText('Gamma'));
+    fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+    // From Gamma, down wraps to Alpha — the keyboard continues from where the
+    // pointer left it rather than from its own stale index.
+    expect(active()).toBe('Alpha');
   });
 });
