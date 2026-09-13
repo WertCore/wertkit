@@ -3,6 +3,7 @@ import {
   Alert, AppShell, Badge, Breadcrumbs, Button, Checkbox, CodeBlock, CodeSurface,
   Card, Combobox, CommandEmpty, CommandGroup, CommandItem, CommandPalette, Dialog,
   DialogClose, EmptyState, Field, FormSection, Heading, HighlightText, Input,
+  ContextMenu, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator,
   Kbd, KeyValueEditor, Link, Menu, MenuItem, MenuLabel, MenuSeparator, NavItem, NavList,
   SegmentedControl, Select, SelectItem, SettingRow, SkipToContent, Skeleton,
   Spinner, SplitPane, Stepper, Switch, Table, Tabs, TabsContent, TabsList, TabsTrigger,
@@ -159,6 +160,17 @@ function Kitchen() {
             <MenuSeparator />
             <MenuItem tone="danger">Abort</MenuItem>
           </Menu>
+          <ContextMenu
+            trigger={
+              <Button variant="secondary">Right-click me (or Shift+F10)</Button>
+            }
+          >
+            <ContextMenuLabel>Request</ContextMenuLabel>
+            <ContextMenuItem>Duplicate</ContextMenuItem>
+            <ContextMenuItem shortcut="F2">Rename</ContextMenuItem>
+            <ContextMenuSeparator />
+            <ContextMenuItem tone="danger">Delete</ContextMenuItem>
+          </ContextMenu>
           <Tooltip content="Tooltips are supplementary - never the only label.">
             <Button variant="ghost">Hover me</Button>
           </Tooltip>
