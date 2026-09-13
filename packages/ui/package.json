@@ -1,6 +1,6 @@
 {
   "name": "@wertkit/ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "wertkit web components. Radix behaviour, CSS Modules, wertkit tokens.",
   "license": "UNLICENSED",
   "type": "module",
