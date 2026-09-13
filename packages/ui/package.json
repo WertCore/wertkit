@@ -1,6 +1,6 @@
 {
   "name": "@wertkit/ui",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "wertkit web components. Radix behaviour, CSS Modules, wertkit tokens.",
   "license": "UNLICENSED",
   "type": "module",
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.4",
+    "@radix-ui/react-context-menu": "^2.2.6",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-select": "^2.1.6",

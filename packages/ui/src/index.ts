@@ -31,6 +31,13 @@ export { Dialog, DialogClose } from './components/Dialog/Dialog';
 export type { DialogProps } from './components/Dialog/Dialog';
 export { Menu, MenuItem, MenuLabel, MenuSeparator } from './components/Menu/Menu';
 export type { MenuProps, MenuItemProps } from './components/Menu/Menu';
+export {
+  ContextMenu,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+} from './components/Menu/ContextMenu';
+export type { ContextMenuProps, ContextMenuItemProps } from './components/Menu/ContextMenu';
 export { Tooltip, TooltipProvider } from './components/Tooltip/Tooltip';
 export type { TooltipProps } from './components/Tooltip/Tooltip';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs/Tabs';
