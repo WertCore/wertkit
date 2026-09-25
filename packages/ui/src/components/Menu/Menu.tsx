@@ -58,3 +58,59 @@ export function MenuLabel({ children }: { children: ReactNode }) {
 export function MenuSeparator() {
   return <RadixMenu.Separator className={styles.separator} />;
 }
+
+export interface MenuSubProps {
+  /** The row that opens the submenu on hover or focus — rendered as an item. */
+  trigger: ReactNode;
+  /** The submenu's own items. */
+  children: ReactNode;
+  /** The ▸ affordance. On by default; turn OFF for an icon-only (⋯) trigger,
+   *  where a second glyph would just read as noise. */
+  chevron?: boolean;
+  tone?: 'default' | 'danger';
+  className?: string;
+}
+
+/**
+ * A nested menu. Radix's own Sub primitive, so it inherits the parent's
+ * keyboard model, typeahead, and pointer-safe diagonal tracking (the reason a
+ * hand-rolled flyout closes the instant the cursor cuts a corner). The trigger
+ * is a menu item; the content is the same surface as the top-level menu.
+ */
+export function MenuSub({ trigger, children, chevron = true, tone = 'default', className }: MenuSubProps) {
+  return (
+    <RadixMenu.Sub>
+      <RadixMenu.SubTrigger
+        className={cn(styles.item, styles.subTrigger, tone === 'danger' && styles.danger, className)}
+      >
+        {trigger}
+        {chevron && (
+          <svg
+            className={styles.subChevron}
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        )}
+      </RadixMenu.SubTrigger>
+      <RadixMenu.Portal>
+        <RadixMenu.SubContent
+          className={styles.content}
+          sideOffset={2}
+          alignOffset={-4}
+          collisionPadding={8}
+        >
+          {children}
+        </RadixMenu.SubContent>
+      </RadixMenu.Portal>
+    </RadixMenu.Sub>
+  );
+}

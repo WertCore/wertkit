@@ -26,6 +26,10 @@
   }
   .item[data-highlighted] { background: var(--wk-accent-subtle); }
   .item[data-disabled] { opacity: 0.55; cursor: not-allowed; }
+  /* A submenu's trigger stays lit while its flyout is open, so the path from
+     parent to child reads as one connected surface. */
+  .subTrigger[data-state="open"] { background: var(--wk-accent-subtle); }
+  .subChevron { margin-inline-start: auto; flex: 0 0 auto; color: var(--wk-fg-subtle); }
   .danger { color: var(--wk-danger-fg); }
   .danger[data-highlighted] { background: var(--wk-danger-subtle); }
   .label { padding: var(--wk-space-1) var(--wk-space-2); font-size: var(--wk-text-xs); color: var(--wk-fg-muted); }

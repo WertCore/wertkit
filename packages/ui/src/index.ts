@@ -29,8 +29,8 @@ export type { CheckboxProps } from './components/Checkbox/Checkbox';
 
 export { Dialog, DialogClose } from './components/Dialog/Dialog';
 export type { DialogProps } from './components/Dialog/Dialog';
-export { Menu, MenuItem, MenuLabel, MenuSeparator } from './components/Menu/Menu';
-export type { MenuProps, MenuItemProps } from './components/Menu/Menu';
+export { Menu, MenuItem, MenuLabel, MenuSeparator, MenuSub } from './components/Menu/Menu';
+export type { MenuProps, MenuItemProps, MenuSubProps } from './components/Menu/Menu';
 export {
   ContextMenu,
   ContextMenuItem,
