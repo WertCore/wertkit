@@ -451,6 +451,13 @@ function Kitchen() {
           <SettingRow label="Timeout" description="Abort after this long.">
             <span style={{ width: 120 }}><Input size="sm" mono defaultValue="30000" /></span>
           </SettingRow>
+          <SettingRow label="Retry limit" description="The label here is the row's; the field keeps its own name for screen readers without printing it twice.">
+            <span style={{ width: 120 }}>
+              <Field label="Retry limit" labelHidden>
+                <Input size="sm" mono defaultValue="3" />
+              </Field>
+            </span>
+          </SettingRow>
         </FormSection>
         <KeyValueEditor
           rows={headers}

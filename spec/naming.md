@@ -42,6 +42,10 @@ Same names, same variants, everywhere:
 - Controlled props follow React convention: `value`/`onValueChange`,
   `checked`/`onCheckedChange`, `open`/`onOpenChange`. Handlers receive the value
   directly, never a DOM event.
+- A label or caption can always be hidden without losing its association:
+  `Field` takes `labelHidden`, `Table` takes `captionHidden`. Use these rather
+  than dropping the label or duplicating the text - `SettingRow`'s label is not
+  a `<label>`, so a settings row pairs with `Field labelHidden`.
 - Every leaf component forwards `className`, `ref`, and `...rest`.
 
 ## Themes

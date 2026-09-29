@@ -15,6 +15,16 @@ export const useField = () => useContext(FieldContext);
 
 export interface FieldProps {
   label?: ReactNode;
+  /**
+   * Keep the label as the control's accessible name but take it off screen.
+   *
+   * The settings-page pairing is `SettingRow` for the row and `Field` for the
+   * control's own a11y wiring, and `SettingRow`'s label is deliberately not a
+   * `<label>` - so nesting a `Field` with a visible label prints the same text
+   * twice. This is the same escape `Table`'s `captionHidden` provides: the
+   * association and the announcement stay, the pixels go.
+   */
+  labelHidden?: boolean;
   hint?: ReactNode;
   /** Presence flips the field to the invalid state and replaces the hint. */
   error?: ReactNode;
@@ -23,7 +33,7 @@ export interface FieldProps {
   className?: string;
 }
 
-export function Field({ label, hint, error, required, children, className }: FieldProps) {
+export function Field({ label, labelHidden = false, hint, error, required, children, className }: FieldProps) {
   const id = useId();
   const inputId = `${id}-input`;
   const hintId = `${id}-hint`;
@@ -37,7 +47,7 @@ export function Field({ label, hint, error, required, children, className }: Fie
     <FieldContext.Provider value={{ inputId, describedBy, invalid }}>
       <div className={cn(styles.root, className)}>
         {label && (
-          <label className={styles.label} htmlFor={inputId}>
+          <label className={cn(styles.label, labelHidden && styles.labelHidden)} htmlFor={inputId}>
             {label}
             {required && (
               <span className={styles.required} aria-hidden="true">
