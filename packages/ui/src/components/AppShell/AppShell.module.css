@@ -2,7 +2,15 @@
   .root {
     display: grid;
     grid-template-rows: auto 1fr;
-    min-height: 100dvh; /* not 100vh - iOS Safari overshoots with the URL bar */
+    /*
+     * Fixed, not min-height. With min-height the root grew past the viewport
+     * on tall content, which moved scrolling to the document - and the
+     * sidebar and titlebar scrolled away with it. A page frame holds the
+     * viewport; the panes own their own scroll.
+     */
+    /* dvh, not vh - iOS Safari overshoots with the URL bar. */
+    height: 100dvh;
+    overflow: hidden;
     background: var(--wk-bg);
     color: var(--wk-fg);
     font-family: var(--wk-font-sans);
@@ -33,8 +41,11 @@
     border-inline-end: var(--wk-border-thin) solid var(--wk-border);
     overflow-y: auto;
     padding-bottom: var(--wk-safe-b);
+    /* Grid items default to min-height:auto, which refuses to shrink below
+       content and would push the frame taller again. */
+    min-height: 0;
   }
-  .main { min-width: 0; overflow: auto; padding-bottom: var(--wk-safe-b); }
+  .main { min-width: 0; min-height: 0; overflow: auto; padding-bottom: var(--wk-safe-b); }
 
   @media (max-width: 720px) {
     /* Must repeat the attribute selector: collapsing the sidebar has to beat
